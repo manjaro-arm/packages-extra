@@ -1,0 +1,55 @@
+# Based on the file created for Arch Linux by:
+# Maintainer : Piotr Gorski <sir_lucjan@bridgelinux.pl>
+
+# Maintainer: Philip Müller <philm@manjaro.org>
+# Maintainer: Roland Singer <roland@manjaro.org>
+# Maintainer: Rob McCathie <rob@manjaro.org>
+
+pkgname=xfdesktop
+_git=753b67d0e868818cc8d9978154e2fea2fee9206a
+pkgver=4.12.1
+pkgrel=2.2
+pkgdesc="A desktop manager for Xfce"
+arch=('armv6h' 'armv7h' 'i686' 'x86_64')
+url="http://www.xfce.org/"
+license=('GPL2')
+groups=('xfce4')
+depends=("libxfce4ui>=4.11" 'thunar' 'garcon' 'hicolor-icon-theme' 'libwnck')
+makedepends=('intltool' 'xfce4-dev-tools')
+install=xfdesktop.install
+#source=("http://archive.xfce.org/src/xfce/xfdesktop/4.11/${pkgname}-${pkgver}.tar.bz2")
+source=("${pkgname}-${pkgver}-${pkgrel}.tar.bz2::http://git.xfce.org/xfce/${pkgname}/snapshot/${pkgname}-${_git}.tar.bz2")
+sha256sums=('98c1ef39ef481c24ed6e4c5c46e5d087cc95be42e23b86536991cfa0d389c3a5')
+
+prepare() {
+  #cd "$srcdir/$pkgname-$pkgver"
+  cd "$srcdir/$pkgname-$_git"
+  sed -i -e 's|micro], \[0|micro], \[1|g' configure.ac.in
+  sed -i -e 's|@REVISION@|MANJARO|g' configure.ac.in
+  sed -i -e 's|git]|]|' configure.ac.in
+}
+
+build() {
+#  cd "${srcdir}/${pkgname}-${pkgver}"
+  cd "${srcdir}/${pkgname}-${_git}"
+
+  #./configure \
+  ./autogen.sh \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --libexecdir=/usr/lib \
+    --localstatedir=/var \
+    --disable-static \
+    --enable-gio-unix \
+    --enable-thunarx \
+    --disable-notifications \
+    --disable-debug
+
+  make
+}
+
+package() {
+  cd "${srcdir}/${pkgname}-${_git}"
+  #cd "${srcdir}/${pkgname}-${pkgver}"
+  make DESTDIR="${pkgdir}" install
+}

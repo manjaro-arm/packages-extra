@@ -1,0 +1,60 @@
+# $Id: PKGBUILD 241037 2015-06-19 16:29:43Z foutrelis $
+# Maintainer: Evangelos Foutras <evangelos@foutrelis.com>
+# Contributor: Andrew Simmons <andrew.simmons@gmail.com>
+
+pkgname=thunar
+pkgver=1.6.10
+pkgrel=2.3
+pkgdesc="Modern file manager for Xfce"
+arch=('armv6h' 'armv7h' 'i686' 'x86_64')
+url="http://thunar.xfce.org"
+license=('GPL2' 'LGPL2.1')
+groups=('xfce4')
+depends=('desktop-file-utils' 'libexif' 'hicolor-icon-theme' 'libnotify'
+         'libgudev' 'gtk2' 'exo' 'libxfce4util' 'libxfce4ui' 'libpng')
+makedepends=('intltool' 'xfce4-panel')
+optdepends=('gvfs: for trash support, mounting with udisk and remote filesystems'
+            'xfce4-panel: for trash applet'
+            'tumbler: for thumbnail previews'
+            'thunar-volman: manages removable devices'
+            'thunar-archive-plugin: create and deflate archives'
+            'thunar-media-tags-plugin: view/edit id3/ogg tags')
+install=$pkgname.install
+source=(http://archive.xfce.org/src/xfce/$pkgname/${pkgver%.*}/Thunar-$pkgver.tar.bz2
+        Fix_crashes_when_reloading_target_file_after_move.patch::http://git.xfce.org/xfce/thunar/patch/?id=029012f4c39d9d3d9ae617491a69f76f54a4192f
+        Deactivate-SEND_MOVED-code-paths.patch::http://bug-attachment.xfce.org/attachment.cgi?id=6530
+        Fixing-missing-return-value-in-standard-view.patch::http://git.xfce.org/xfce/thunar/patch/?id=77cf6ec3a3969589a4e9a8beea6a122b7dbcc2a0)
+sha256sums=('7e9d24067268900e5e44d3325e60a1a2b2f8f556ec238ec12574fbea15fdee8a'
+            '292e593492678b7e476d5da992bc9c008169b7e0f00048aee100195701842892'
+            '2461773024336a94fd70d7f2276aec0f9fc819cb8af96c8689e42c429014ea7d'
+            '3f4d8dfba3003f14d29d7b5f8e38debecb2aa3a7244949a564bd183e8ae3d2fe')
+
+prepare() {
+  cd "$srcdir/Thunar-$pkgver"
+  patch -Np1 -i "$srcdir/Fix_crashes_when_reloading_target_file_after_move.patch"
+  patch -Np1 -i "$srcdir/Deactivate-SEND_MOVED-code-paths.patch"
+  patch -Np1 -i "$srcdir/Fixing-missing-return-value-in-standard-view.patch"
+}
+
+build() {
+  cd "$srcdir/Thunar-$pkgver"
+
+  ./configure \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --enable-gio-unix \
+    --enable-dbus \
+    --enable-gudev \
+    --enable-notifications \
+    --enable-exif \
+    --enable-pcre \
+    --disable-debug
+  make
+}
+
+package() {
+  cd "$srcdir/Thunar-$pkgver"
+  make DESTDIR="$pkgdir" install
+}
+
+# vim:set ts=2 sw=2 et:

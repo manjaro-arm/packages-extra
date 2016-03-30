@@ -1,0 +1,51 @@
+# Based on the file created for Arch Linux by:
+# Maintainer : Piotr Gorski <sir_lucjan@bridgelinux.pl>
+
+# Maintainer: Philip Müller <philm@manjaro.org>
+# Maintainer: Roland Singer <roland@manjaro.org>
+
+pkgname=libxfce4ui
+_pkgname=libxfce4ui
+pkgver=4.11.2
+_git=2d98aae4a84c6319737688141465278c9b155c21
+pkgrel=1
+pkgdesc="Commonly used Xfce widgets among Xfce applications"
+arch=('i686' 'x86_64')
+url="http://www.xfce.org/"
+license=('GPL2')
+depends=('libxfce4util' 'gtk2' 'xfconf' 'libsm' 'startup-notification'
+         'hicolor-icon-theme')
+makedepends=('intltool' 'gtk-doc' 'gtk3' 'xfce4-dev-tools')
+optdepends=('gtk3: for GTK3 support')
+#replaces=('libxfcegui4') - later when all is ported
+options=('!libtool')
+install=$_pkgname.install
+provides=("$_pkgname")
+conflicts=("$_pkgname" "$_pkgname-git")
+source=(#http://archive.xfce.org/src/xfce/$pkgname/4.11/$pkgname-$pkgver.tar.bz2
+        $pkgname-$pkgver-$pkgrel.tar.bz2::http://git.xfce.org/xfce/$pkgname/snapshot/$pkgname-$_git.tar.bz2)
+sha256sums=('405e8484d25e63add519859a865ce7be117dac5f39877c377849d813fb0628f6')
+
+build() {
+  #cd "$srcdir/$pkgname-$pkgver"
+  cd "$srcdir/$pkgname-$_git"
+
+  #  ./configure \
+  ./autogen.sh \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --libexecdir=/usr/lib \
+    --localstatedir=/var \
+    --disable-static \
+    --enable-gtk-doc \
+    --disable-debug \
+    --enable-gtk3 \
+    --with-vendor-info="Manjaro"
+  make
+}
+
+package() {
+  #cd "$srcdir/$pkgname-$pkgver"
+  cd "$srcdir/$pkgname-$_git"
+  make DESTDIR="$pkgdir" install
+}

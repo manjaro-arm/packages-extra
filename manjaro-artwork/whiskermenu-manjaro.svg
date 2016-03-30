@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="16"
+   viewBox="0 0 16 16"
+   height="16"
+   id="svg4763"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="manjaro-whiskermenu.svg">
+  <metadata
+     id="metadata4791">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1680"
+     inkscape:window-height="996"
+     id="namedview4789"
+     showgrid="false"
+     inkscape:zoom="32"
+     inkscape:cx="7.1307679"
+     inkscape:cy="7.9771176"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g9724" />
+  <defs
+     id="defs4765">
+    <clipPath
+       id="clipPath4767">
+      <rect
+         x="26.999"
+         y="221.5"
+         width="1.876"
+         height="4.874"
+         fill="#bebebe"
+         color="#bebebe"
+         id="rect4769" />
+    </clipPath>
+    <clipPath
+       id="clipPath4771">
+      <rect
+         x="26.966"
+         y="221.33"
+         width="2.898"
+         height="5.216"
+         fill="#bebebe"
+         color="#bebebe"
+         id="rect4773" />
+    </clipPath>
+    <clipPath
+       id="clipPath4775">
+      <rect
+         x="26.85"
+         y="220.75"
+         width="3.825"
+         height="6.375"
+         fill="#bebebe"
+         color="#bebebe"
+         id="rect4777" />
+    </clipPath>
+    <clipPath
+       id="clipPath-398118914">
+      <g
+         transform="translate(0,-1004.3622)"
+         id="g9690">
+        <path
+           style="fill:#1890d0"
+           inkscape:connector-curvature="0"
+           d="m -24,13 c 0,1.105 -0.672,2 -1.5,2 -0.828,0 -1.5,-0.895 -1.5,-2 0,-1.105 0.672,-2 1.5,-2 0.828,0 1.5,0.895 1.5,2 z"
+           transform="matrix(15.333333,0,0,11.5,414.99999,878.8622)"
+           id="path9692" />
+      </g>
+    </clipPath>
+  </defs>
+  <g
+     transform="matrix(0.72546558,0,0,0.663584,-9.3609847,-7.8935239)"
+     id="g9720">
+    <g
+       clip-path="url(#clipPath-398118914)"
+       id="g9722"
+       transform="matrix(1,0,0,0.99732477,-0.17621578,0.09631892)">
+      <!-- color: #35bf5c -->
+      <g
+         id="g9724">
+        <path
+           style="fill:#bebebe;fill-opacity:1"
+           inkscape:connector-curvature="0"
+           d="m 14.440015,11.881952 0.02154,7.243048 0.004,0 -0.004,2.895 5.538447,0 0,-3 7,0 0,-7.141657 -12.559985,-0.02361 M 28,11.862343 28,36.004 l 5.852857,0 0,-24.141657 M 21,20.004 l 0,16 6,0 0,-16 m -12.555985,3 0,13 5.559985,0 0,-13"
+           id="path9726"
+           sodipodi:nodetypes="ccccccccccccccccccccc" />
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,35 @@
+# Based on Arch-Logo Plymouth Theme by Carlos Molines (karlinux)
+# http://karlinux.deviantart.com/#/d3grgbm
+
+# Maintainer: Guinux <nuxgui@gmail.com>
+
+pkgname=plymouth-theme-sonar-elegant
+pkgver=0.1
+pkgrel=1
+pkgdesc="Elegant Sonar theme for plymouth"
+arch=('any')
+url="http://freedesktop.org/wiki/Software/Plymouth"
+license=('GPL')
+depends=('plymouth')
+#install=theme.install
+source=('sonar-elegant.png'
+        'password_field.png'
+        'progress_dot_on.png'
+        'progress_dot_off.png'
+        'sonar-elegant.plymouth'
+        'sonar-elegant.script')
+sha256sums=('37180c3b16b5b3b29e6241b9bbc1513784f790adfd5f41f5d135c146dffb1911'
+            'a6b52fa6a4d701996c324f06b4090df3c6716b5619044098525c08f65a807454'
+            '8c337d69212f0c0bd92e0370e3a0b95bd2e1155be1316fe77d3a1980887b4dc2'
+            '854fb2fe636df02e27816862b51b3c9bf3d04e3bcd50daff2a391503036b3617'
+            'b447c7d55695ae61e59b6b06e579bb5e0c527e10f8cc96e2786586f99dc166c3'
+            'eea59b256de000685714bcd93f409a02a3d1051357ccb9903415ac2809f93f9f')
+
+package() {
+  install -Dm644 "${srcdir}/sonar-elegant.png" "${pkgdir}/usr/share/plymouth/themes/sonar-elegant/sonar-elegant.png"
+  install -Dm644 "${srcdir}/password_field.png" "${pkgdir}/usr/share/plymouth/themes/sonar-elegant/password_field.png"
+  install -Dm644 "${srcdir}/progress_dot_on.png" "${pkgdir}/usr/share/plymouth/themes/sonar-elegant/progress_dot_on.png"
+  install -Dm644 "${srcdir}/progress_dot_off.png" "${pkgdir}/usr/share/plymouth/themes/sonar-elegant/progress_dot_off.png"
+  install -Dm644 "${srcdir}/sonar-elegant.plymouth" "${pkgdir}/usr/share/plymouth/themes/sonar-elegant/sonar-elegant.plymouth"
+  install -Dm644 "${srcdir}/sonar-elegant.script" "${pkgdir}/usr/share/plymouth/themes/sonar-elegant/sonar-elegant.script"
+}

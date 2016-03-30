@@ -1,0 +1,13 @@
+src
+pkg
+*.pkg.*
+*.src.*
+*.tar.*
+*.tgz
+*.run
+*.zip
+*.xz
+*.log
+*~
+.AURINFO
+.lock

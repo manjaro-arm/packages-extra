@@ -1,0 +1,35 @@
+# Based on Arch-Logo Plymouth Theme by Carlos Molines (karlinux)
+# http://karlinux.deviantart.com/#/d3grgbm
+
+# Maintainer: Guinux <nuxgui@gmail.com>
+
+pkgname=plymouth-theme-manjaro-elegant-hidpi
+pkgver=1.0.1
+pkgrel=1
+pkgdesc="Elegant Manjaro theme for plymouth (HiDPI)"
+arch=('any')
+url="http://freedesktop.org/wiki/Software/Plymouth"
+license=('GPL')
+depends=('plymouth')
+#install=theme.install
+source=('manjaro-elegant.png'
+        'password_field.png'
+        'progress_dot_on.png'
+        'progress_dot_off.png'
+        'manjaro-elegant-hidpi.plymouth'
+        'manjaro-elegant-hidpi.script')
+sha256sums=('33dc9009033048f194e58095f1f16af3b6cf920b3056b1411d448e65cd40e4a1'
+            '418a40a96962175a433311933ed9ab28c7e61ce1ec5971ae9da923203225d68e'
+            'ce072b6b97e4e2936c853e000f7f72bac53ab9001e436ce27b1dbf5fd522d1a1'
+            '139e49979616fc3c919f489e7796285d6040de8d9fcb977b8b3e04559769ff89'
+            '87e34cf6535b4a8c7eeb4934fc77e12fd1742ece04dbfdf6efa787fd217d251b'
+            '6278df853932bd4f9f4e8dd7854f1a7c98d2aead8a1872597396248321fd8707')
+
+package() {
+  install -Dm644 "${srcdir}/manjaro-elegant.png" "${pkgdir}/usr/share/plymouth/themes/manjaro-elegant-hidpi/manjaro-elegant.png"
+  install -Dm644 "${srcdir}/password_field.png" "${pkgdir}/usr/share/plymouth/themes/manjaro-elegant-hidpi/password_field.png"
+  install -Dm644 "${srcdir}/progress_dot_on.png" "${pkgdir}/usr/share/plymouth/themes/manjaro-elegant-hidpi/progress_dot_on.png"
+  install -Dm644 "${srcdir}/progress_dot_off.png" "${pkgdir}/usr/share/plymouth/themes/manjaro-elegant-hidpi/progress_dot_off.png"
+  install -Dm644 "${srcdir}/manjaro-elegant-hidpi.plymouth" "${pkgdir}/usr/share/plymouth/themes/manjaro-elegant-hidpi/manjaro-elegant-hidpi.plymouth"
+  install -Dm644 "${srcdir}/manjaro-elegant-hidpi.script" "${pkgdir}/usr/share/plymouth/themes/manjaro-elegant-hidpi/manjaro-elegant-hidpi.script"
+}

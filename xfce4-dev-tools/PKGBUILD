@@ -1,0 +1,33 @@
+# $Id: PKGBUILD 197076 2013-10-21 15:48:13Z foutrelis $
+# Maintainer: Evangelos Foutras <evangelos@foutrelis.com>
+# Contributor: Andreas Radke <andyrtr@archlinux.org>
+# Contributor: Tobias Kieslich <tobias funnychar archlinux.org>
+
+pkgname=xfce4-dev-tools
+pkgver=4.11.1
+pkgrel=1
+pkgdesc="Xfce developer tools"
+arch=('armv6h' 'armv7h' 'i686' 'x86_64')
+url="http://www.xfce.org/"
+license=('GPL2')
+depends=('gtk-doc' 'automake' 'make' 'intltool' 'pkg-config')
+source=(http://archive.xfce.org/src/xfce/xfce4-dev-tools/${pkgver%.*}/$pkgname-$pkgver.tar.bz2)
+sha256sums=('21bff408eb48154b3383bde8fb71a6c9359f93e5752b0af284e0af3bf6a56218')
+
+build() {
+  cd "$srcdir/$pkgname-$pkgver"
+
+  ./configure \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --libexecdir=/usr/lib \
+    --localstatedir=/var
+  make
+}
+
+package() {
+  cd "$srcdir/$pkgname-$pkgver"
+  make DESTDIR="$pkgdir" install
+}
+
+# vim:set ts=2 sw=2 et:

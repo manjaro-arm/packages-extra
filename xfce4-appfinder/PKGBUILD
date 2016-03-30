@@ -1,0 +1,44 @@
+# $Id: PKGBUILD 184285 2013-05-05 17:44:59Z foutrelis $
+# Maintainer: Evangelos Foutras <evangelos@foutrelis.com>
+# Contributor: AndyRTR <andyrtr@archlinux.org>
+# Contributor: tobias <tobias funnychar archlinux.org>
+
+pkgname=xfce4-appfinder
+pkgver=4.11.0
+pkgrel=2
+_git=734e88180017cd3b025d6f8c00c56b0a1e7d6d62
+pkgdesc="An application finder for Xfce"
+arch=('armv6h' 'armv7h' 'i686' 'x86_64')
+url="http://www.xfce.org/"
+license=('GPL2')
+groups=('xfce4')
+depends=('libxfce4ui' 'garcon' 'hicolor-icon-theme' 'exo')
+makedepends=('intltool' 'xfce4-dev-tools')
+replaces=('xfce-utils')
+install=$pkgname.install
+source=(#http://archive.xfce.org/src/xfce/$pkgname/4.11/$pkgname-$pkgver.tar.bz2
+        $pkgname-$pkgver-$pkgrel.tar.bz2::http://git.xfce.org/xfce/$pkgname/snapshot/$pkgname-$_git.tar.bz2)
+sha256sums=('ea89c3a0abc3ed2bfd67c5a129de503689e597a2822e6ae328a08ce67d7cafed')
+
+build() {
+  #cd "$srcdir/$_pkgname-$pkgver"
+  cd "$srcdir/$pkgname-$_git"
+
+  #./configure \
+  ./autogen.sh \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --libexecdir=/usr/lib \
+    --localstatedir=/var \
+    --disable-static \
+    --disable-debug
+  make
+}
+
+package() {
+  #cd "$srcdir/$_pkgname-$pkgver"
+  cd "$srcdir/$pkgname-$_git"
+  make DESTDIR="$pkgdir" install
+}
+
+# vim:set ts=2 sw=2 et:

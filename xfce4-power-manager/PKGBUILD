@@ -1,0 +1,64 @@
+# Based on the file created for Arch Linux by:
+# Maintainer : Evangelos Foutras <evangelos@foutrelis.com>
+# Contributor: Tobias Kieslich <tobias funnychar archlinux.org>
+
+# Maintainer : Philip Müller <philm@manjaro.org>
+# Maintainer : Rob McCathie <rob@manjaro.org>
+
+pkgname=xfce4-power-manager
+_seriesver=1.4
+pkgver=${_seriesver}.2
+pkgrel=4
+_git=0ca715929b2e93a58516002a475fe4543115bd11
+pkgdesc="Power manager for Xfce desktop"
+arch=('armv6h' 'armv7h' 'i686' 'x86_64')
+url="http://www.xfce.org/"
+license=('GPL2')
+groups=('xfce4')
+depends=('xfce4-panel' 'upower' 'udisks' 'libnotify' 'hicolor-icon-theme')
+#makedepends=('intltool' 'xfce4-dev-tools')
+makedepends=('intltool' 'xfce4-dev-tools' 'git')
+install=$pkgname.install
+#source=("http://archive.xfce.org/src/xfce/xfce4-power-manager/${_seriesver}/${pkgname}-${pkgver}.tar.bz2")
+#source=(git://git.xfce.org/xfce/xfce4-power-manager)
+source=("$pkgname-$pkgver-$pkgrel.tar.bz2::http://git.xfce.org/xfce/$pkgname/snapshot/$pkgname-$_git.tar.bz2")
+sha256sums=('52329bcd39a81ba00a832f93dc1f09e8e93c93e2404641ca0ded7688b424eaee')
+
+#pkgver() {
+#  cd "${srcdir}/${pkgname}"
+#
+#  git describe --long | sed 's/^xfce4-power-manager-//;s/-/./g'
+#}
+
+prepare() {
+#  cd "${srcdir}/${pkgname}-${pkgver}"
+
+  cd "${srcdir}/${pkgname}-${_git}"
+  sed -i -e 's|git]|]|' configure.ac.in
+}
+
+build() {
+  #cd "${srcdir}/${pkgname}-${pkgver}"
+  cd "${srcdir}/${pkgname}-${_git}"
+  
+  #  ./configure \
+    ./autogen.sh \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --sbindir=/usr/bin \
+    --libexecdir=/usr/lib \
+    --localstatedir=/var \
+    --disable-network-manager \
+    --enable-polkit \
+    --enable-dpms \
+    --disable-debug
+
+  make
+}
+
+package() {
+  #cd "${srcdir}/${pkgname}-${pkgver}"
+  cd "${srcdir}/${pkgname}-${_git}"
+  
+  make DESTDIR="${pkgdir}" install
+}

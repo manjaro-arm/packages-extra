@@ -1,0 +1,33 @@
+# Maintainer: Philip Müller <philm_at_manjaro_dot_org>
+# Maintainer: Rob McCathie <rob_at_manjaro_dot_org>
+
+pkgbase=menda-themes
+pkgname=("${pkgbase}" "${pkgbase}-dark")
+pkgver=20160212
+pkgrel=1
+_git='e558d930e3e2f1326059a84020f7a3e0bd4e23c3'
+arch=('any')
+url="https://github.com/manjaro/artwork-menda"
+license=('GPL3')
+depends=('gtk-engine-murrine' 'gtk-engines')
+optdepends=('menda-circle-icon-theme: Recommended icon theme'
+            'faenza-green-icon-theme: Recommended icon theme')
+source=("${pkgbase}-${pkgver}-${pkgrel}.tar.gz::${url}/archive/${_git}.tar.gz")
+md5sums=('55daddcb5877260a33fb7897bb5c24f3')
+
+package_menda-themes() {
+  pkgdesc="Manjaro's official Gtk2, Gtk3, Metacity, Xfwm4, Openbox, Cinnamon and GNOME Shell themes"
+  replaces=('gtk-theme-menda')
+  
+  install -dm755 "${pkgdir}/usr/share/themes"
+  install -Dm755 "${srcdir}/artwork-menda-${_git}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+  cp -r "${srcdir}/artwork-menda-${_git}/Menda" "${pkgdir}/usr/share/themes"
+}
+
+package_menda-themes-dark() {
+  pkgdesc="Manjaro's official Gtk2, Gtk3, Metacity, Xfwm4, Openbox, Cinnamon and GNOME Shell themes. Dark version."
+  
+  install -dm755 "${pkgdir}/usr/share/themes"
+  install -Dm755 "${srcdir}/artwork-menda-${_git}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+  cp -r "${srcdir}/artwork-menda-${_git}/Menda-Dark" "${pkgdir}/usr/share/themes"
+}

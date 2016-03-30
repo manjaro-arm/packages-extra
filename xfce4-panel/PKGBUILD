@@ -1,0 +1,48 @@
+# $Id: PKGBUILD 198562 2013-10-30 15:37:22Z allan $
+# Maintainer: Evangelos Foutras <evangelos@foutrelis.com>
+# Contributor: tobias <tobias funnychar archlinux.org>
+
+pkgname=xfce4-panel
+_git=c86d6d8856be71f0d7f863738aa9c782bc85145d
+pkgver=4.11.2
+pkgrel=4
+pkgdesc="Panel for the Xfce desktop environment"
+arch=('armv6h' 'armv7h' 'i686' 'x86_64')
+url="http://www.xfce.org/"
+license=('GPL2')
+groups=('xfce4')
+depends=('exo' 'garcon' 'libxfce4ui' 'libwnck' 'hicolor-icon-theme'
+         'desktop-file-utils')
+makedepends=('intltool' 'gtk-doc' 'gtk3' 'xfce4-dev-tools')
+optdepends=('gtk3: for GTK3 support')
+install=$pkgname.install
+options=('!libtool')
+source=(#http://archive.xfce.org/src/xfce/$pkgname/4.11/$pkgname-$pkgver.tar.bz2)
+        $pkgname-$pkgver-$pkgrel.tar.bz2::http://git.xfce.org/xfce/$pkgname/snapshot/$pkgname-$_git.tar.bz2)
+sha256sums=('a541d0c59b768dfd225271a4d4951906734fe2d6d7a1fc688d34f0896ff757a4')
+
+build() {
+  #cd "$srcdir/$pkgname-$pkgver"
+  cd "$srcdir/$pkgname-$_git"
+
+  #  ./configure \
+  ./autogen.sh \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --libexecdir=/usr/lib \
+    --localstatedir=/var \
+    --disable-static \
+    --enable-gio-unix \
+    --enable-gtk-doc \
+    --enable-gtk3 \
+    --disable-debug
+  make
+}
+
+package() {
+  #cd "$srcdir/$pkgname-$pkgver"
+  cd "$srcdir/$pkgname-$_git"
+  make DESTDIR="$pkgdir" install
+}
+
+# vim:set ts=2 sw=2 et:
