@@ -2,7 +2,7 @@
 # Maintainer: Roland Singer <roland@manjaro.org>
 
 pkgbase=manjaro-meta
-arch=('i686' 'x86_64')
+arch=('armv7h' 'i686' 'x86_64')
 pkgname=('manjaro-alsa'
 	 'manjaro-pulse'
          'manjaro-printer'
