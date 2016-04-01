@@ -29,3 +29,4 @@ package_menda-themes-dark() {
   install -Dm755 "${srcdir}/artwork-menda-${_git}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
   cp -r "${srcdir}/artwork-menda-${_git}/Menda-Dark" "${pkgdir}/usr/share/themes"
 }
+md5sums=('f6f52471e49ea2277c54b6de71f6ee57')
