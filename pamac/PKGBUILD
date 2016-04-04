@@ -7,7 +7,7 @@ pkgrel=1
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
 #_gitcommit="7266a5766441725210e7e4af3ee7da501cf0e38f"
 pkgdesc="A Gtk3 frontend for libalpm"
-arch=('armv6h' 'armv7h' 'i686' 'x86_64')
+arch=('armv6h' 'armv7h' 'i686' 'x86_64' 'aarch64')
 url="https://github.com/manjaro/pamac"
 license=('GPL3')
 depends=('glib2>=2.42' 'json-glib' 'libsoup' 'dbus-glib' 'polkit' 'vte3>=0.38' 'gtk3>=3.18'
@@ -40,7 +40,7 @@ prepare() {
   sed -i -e "s|\"$_pkgver\"|\"$pkgver-$pkgrel\"|g" manager_window.vala 
   cd "$srcdir/pamac-$pkgver/"
   # patches here
-  patch -Np1 -i $srcdir/notification-improvment.patch
+  #patch -Np1 -i $srcdir/notification-improvment.patch
 }
 
 build() {
