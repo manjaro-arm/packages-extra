@@ -1,0 +1,25 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Contributor: rabideau @ forum.manjaro.org
+# Contributor: paulubuntu @ gnome-look.org
+# Author: horst3180 @ deviantart
+
+pkgname=vertex-maia-themes
+pkgver=20160308
+pkgrel=1
+pkgdesc='Vertex themes to match maia icon theme with classic round or new square window buttons'
+arch=('any')
+url="http://github.com/manjaro/$pkgname"
+license=('GPL3')
+depends=('gtk-engine-murrine')
+replaces=('vertex-maia-themes-square')
+makedepends=('git')
+optdepends=('xcursor-simpleandsoft: matching cursor-theme'
+	'cantarell-fonts: font for Cinnamon panel')
+source=("git+$url.git")
+sha256sums=('SKIP')
+
+package() {
+	cd $pkgname
+	install -dm755 $pkgdir/usr/share/themes
+	cp -r Vertex-Maia{,-Square} $pkgdir/usr/share/themes
+}

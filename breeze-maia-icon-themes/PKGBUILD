@@ -1,0 +1,41 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Contributor: Philip Müller <philm@manjaro.org>
+# Contributor: Andrea Scarpino <andrea@archlinux.org>
+# Contributor: Antonio Rojas
+
+pkgname=breeze-maia-icon-themes
+_pkgname=breeze-icons
+pkgver=5.21.0
+pkgrel=3
+pkgdesc='Breeze icon themes with Maia colors'
+arch=('any')
+url='https://community.kde.org/Frameworks'
+license=('LGPL')
+makedepends=('extra-cmake-modules' 'qt5-base')
+source=("http://download.kde.org/stable/frameworks/${pkgver%.*}/$_pkgname-$pkgver.tar.xz")
+md5sums=('2d293916db5ea309e2f4b3659c394a79')
+
+prepare() {
+  mkdir -p build
+}
+
+build() {
+  cd build
+  cmake ../$_pkgname-$pkgver \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DKDE_INSTALL_USE_QT_SYS_PATHS=ON
+  make
+}
+
+package() {
+  cd build
+  make DESTDIR="$pkgdir" install
+
+  msg "Adjusting icon colors..."
+  cd $pkgdir/usr/share/icons
+  find . ! -type l -name "*.svg" -exec sed -i "s/147eb8/00705a/g;s/3daee9/16a085/g;s/6cc1ef/37a892/g;s/1272a5/00705a/g" '{}' \;
+  find . -name "index.*" -exec sed -i "s/Breeze/Breeze-Maia/g;s/Maia Dark/Maia-Dark/g" '{}' \;
+  mv breeze Breeze-Maia
+  mv breeze-dark Breeze-Maia-Dark
+}
