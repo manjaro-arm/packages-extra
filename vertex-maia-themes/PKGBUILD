@@ -27,7 +27,7 @@ source=("vertex-${_releasever}.tar.gz::https://github.com/horst3180/Vertex-theme
 	'whiskermenu-rabideau.patch')
 sha256sums=('b2cf4ae08709cfa8ae5b4389e0bfd824d27ca9f73f0a09ce2be3c4b62dd4549d'
             '3ee2436859d919d7a8a53ce42f4bc899e29935c49e13a6b9ee68b61fe9304c9f'
-            '3de3aa9e05f30d5887a17f1b0282df4e87b8a8dcb8b39b3606ac1dd0e8c26fd5')
+            '7ea204b5f3f57faa24cf7c7bd96cd0a4a7c6836539a24fb3001731e2c5f26eb2')
 options=('!strip')
 
 build() {
