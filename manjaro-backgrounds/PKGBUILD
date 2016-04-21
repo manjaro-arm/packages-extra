@@ -1,7 +1,7 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=manjaro-backgrounds
-pkgver=20160322
+pkgver=20160421
 pkgrel=1
 pkgdesc="Manjaro Wallpapers"
 arch=('any')
