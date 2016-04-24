@@ -2,14 +2,14 @@
 
 pkgname=manjaro-backgrounds
 pkgver=20160421
-pkgrel=1
+pkgrel=2
 pkgdesc="Manjaro Wallpapers"
 arch=('any')
 license=('GPL3')
 url="https://github.com/oberon2007/$pkgname"
-_snapshot=46eaee6e58f52d36f65971ef496e97e05b433a99
+_snapshot=661e632213e17e0c443418a9b8b31c341c2ad4b7
 source=("$pkgname-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz")
-md5sums=('f8d8747e28a0a5b202718172c7c8162d')
+md5sums=('77a916c781d9317adbf94bbbc9ebe0ee')
 
 package() {
 	cd $srcdir/$pkgname-$_snapshot
