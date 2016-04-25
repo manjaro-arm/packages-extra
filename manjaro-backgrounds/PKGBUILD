@@ -11,7 +11,7 @@ _snapshot=9d74d8fd0462fa5a10858c8128054d948d7c8c7c
 conflicts=('maia-wallpaper')
 provides=('maia-wallpaper')
 source=("$pkgname-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz")
-md5sums=('77a916c781d9317adbf94bbbc9ebe0ee')
+md5sums=('441ecce0d41b1209148eeec06c079f26')
 
 package() {
 	cd $srcdir/$pkgname-$_snapshot
