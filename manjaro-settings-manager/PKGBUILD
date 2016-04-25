@@ -3,9 +3,9 @@
 
 pkgname=manjaro-settings-manager
 pkgver=0.4.14
-pkgrel=1
+pkgrel=2
 pkgdesc="Manjaro Linux System Settings Tool"
-arch=('armv6h' 'armv7h' 'i686' 'x86_64')
+arch=('armv6h' 'armv7h' 'aarch64' 'i686' 'x86_64')
 url="https://github.com/manjaro/manjaro-settings-manager"
 license=('GPL')
 depends=('ckbcomp' 'qt5-base' 'icu' 'hwinfo' 'kitemmodels' 'libxkbcommon-x11')
