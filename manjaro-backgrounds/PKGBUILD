@@ -1,17 +1,15 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=manjaro-backgrounds
-pkgver=20160425
-pkgrel=1
+pkgver=20160426
+pkgrel=2
 pkgdesc="Manjaro Wallpapers"
 arch=('any')
 license=('GPL3')
 url="https://github.com/oberon2007/$pkgname"
-_snapshot=9d74d8fd0462fa5a10858c8128054d948d7c8c7c
-conflicts=('maia-wallpaper')
-provides=('maia-wallpaper')
+_snapshot=c1719e42ed15830053d389875ff680b3473bd29f
 source=("$pkgname-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz")
-md5sums=('441ecce0d41b1209148eeec06c079f26')
+md5sums=('b525d59154d73e24c6a4d879c97e8d95')
 
 package() {
 	cd $srcdir/$pkgname-$_snapshot
