@@ -3,17 +3,17 @@
 # Contributor: Alexandru Ianu <alexandru . ianu @ gmail . com>
 
 pkgname=vertex-maia-icon-theme
+_folder=vertex-maia-icon-themes
 pkgver=20160526
-pkgrel=1
-_pkgbase=menda-icon-themes
-_commit=3276d6ad7c76bdd7ffdee1c780c6de1942825096
+pkgrel=2
+_commit=6d279569027e5c0214ba20db87b6ec0c6c98de78
 arch=('any')
-url="https://github.com/manjaro/menda-icon-themes"
+url="https://github.com/manjaro/vertex-maia-icon-themes"
 license=('GPL')
 depends=('hicolor-icon-theme' 'librsvg')
 options=('!emptydirs' '!strip')
-source=("$_pkgbase-$pkgver-$pkgrel.tar.gz::$url/archive/$_commit.tar.gz")
-md5sums=('b36b3260c6824c6f5002c36ba9710b82')
+source=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/archive/$_commit.tar.gz")
+md5sums=('733f13b689ab6ee00378507305d38f7a')
 
 package() {
   pkgdesc="Icons matching Vertex Maia themes, based on Menda Circle"
@@ -22,18 +22,7 @@ package() {
   install -dm755 "${pkgdir}/usr/share/icons"
 
   cd "$pkgdir/usr/share/icons"
-  cp -r "$srcdir/$_pkgbase-$_commit/Menda-Circle" Vertex-Maia
+  cp -r "$srcdir/$_folder-$_commit/Vertex-Maia-Circle" Vertex-Maia
   find . -type d -exec chmod 755 '{}' \;
   find . -type f -exec chmod 644 '{}' \;
-
-  msg "Adjusting icon colours..."
-  find . ! -type l -name "*.svg" -exec sed -i "s/27ae60/16a085/g" '{}' \;
-  msg "Revert some colour changes..."
-  sed -i "s/16a085/27ae60/g" */apps/48x48/apps/chrome-fgbjpbdfegnodokpoejnbhnblcojccal-Default.svg.svg
-  sed -i "s/16a085/27ae60/g" */apps/scalable/chrome-fgbjpbdfegnodokpoejnbhnblcojccal-Default.svg.svg
-  msg "Adjust some more colours..."
-  find */places/. ! -type l -name "*.svg" -exec sed -i "s/27ff60/278a49/g" '{}' \;
-  find */places/. ! -type l -name "*.svg" -exec sed -i "s/278a49/3e7b6f/g" '{}' \;
-
-  find . -name "index.*" -exec sed -i "s/Menda-Circle/Vertex-Maia/g;s/ Circle Edition//g" '{}' \;
 }
