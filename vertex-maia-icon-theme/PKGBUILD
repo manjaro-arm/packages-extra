@@ -13,7 +13,7 @@ license=('GPL')
 depends=('hicolor-icon-theme' 'librsvg')
 options=('!emptydirs' '!strip')
 source=("$_pkgbase-$pkgver-$pkgrel.tar.gz::$url/archive/$_commit.tar.gz")
-md5sums=('')
+md5sums=('703dc677447588c60b72a43c9f94d192')
 
 package() {
   pkgdesc="Icons matching Vertex Maia themes, based on Menda Circle"
