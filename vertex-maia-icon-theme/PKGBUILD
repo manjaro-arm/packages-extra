@@ -4,16 +4,16 @@
 
 pkgname=vertex-maia-icon-theme
 _folder=vertex-maia-icon-themes
-pkgver=20160526
-pkgrel=2
-_commit=553365222b319dfb89398c4b798a53b307a902b9
+pkgver=20160527
+pkgrel=1
+_commit=f4690376037214983c300fed35f5b6b2d66b5ff3
 arch=('any')
 url="https://github.com/manjaro/vertex-maia-icon-themes"
 license=('GPL')
 depends=('hicolor-icon-theme' 'librsvg')
 options=('!emptydirs' '!strip')
 source=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/archive/$_commit.tar.gz")
-md5sums=('68be5d415c1f32c3c924bf8bb64267ca')
+md5sums=('135ce0395b5701aeeeaea225be0964ee')
 
 package() {
   pkgdesc="Icons matching Vertex Maia themes, based on Menda Circle"
@@ -23,6 +23,4 @@ package() {
 
   cd "$pkgdir/usr/share/icons"
   cp -r "$srcdir/$_folder-$_commit/Vertex-Maia" Vertex-Maia
-  find . -type d -exec chmod 755 '{}' \;
-  find . -type f -exec chmod 644 '{}' \;
 }
