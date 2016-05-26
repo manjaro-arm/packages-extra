@@ -3,17 +3,17 @@
 # Contributor: Alexandru Ianu <alexandru . ianu @ gmail . com>
 
 pkgname=vertex-maia-icon-theme
-pkgver=20160525
+pkgver=20160526
 pkgrel=1
 _pkgbase=menda-icon-themes
-_commit='dcae4fedf849a1307c7146489db242643d2a5034'
+_commit=3276d6ad7c76bdd7ffdee1c780c6de1942825096
 arch=('any')
 url="https://github.com/manjaro/menda-icon-themes"
 license=('GPL')
 depends=('hicolor-icon-theme' 'librsvg')
 options=('!emptydirs' '!strip')
 source=("$_pkgbase-$pkgver-$pkgrel.tar.gz::$url/archive/$_commit.tar.gz")
-md5sums=('703dc677447588c60b72a43c9f94d192')
+md5sums=('b36b3260c6824c6f5002c36ba9710b82')
 
 package() {
   pkgdesc="Icons matching Vertex Maia themes, based on Menda Circle"
