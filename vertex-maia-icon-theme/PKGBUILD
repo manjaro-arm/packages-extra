@@ -5,15 +5,15 @@
 pkgname=vertex-maia-icon-theme
 _folder=vertex-maia-icon-themes
 pkgver=20160527
-pkgrel=1
-_commit=f4690376037214983c300fed35f5b6b2d66b5ff3
+pkgrel=3
+_commit=1131ed5cf39044958f4fae58c974011506df9572
 arch=('any')
 url="https://github.com/manjaro/vertex-maia-icon-themes"
 license=('GPL')
 depends=('hicolor-icon-theme' 'librsvg')
 options=('!emptydirs' '!strip')
 source=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/archive/$_commit.tar.gz")
-md5sums=('135ce0395b5701aeeeaea225be0964ee')
+md5sums=('b41ba66f71f5952b48f29392a789383f')
 
 package() {
   pkgdesc="Icons matching Vertex Maia themes, based on Menda Circle"
