@@ -4,8 +4,8 @@
 
 pkgname=vertex-maia-icon-theme
 _folder=vertex-maia-icon-themes
-pkgver=20160527
-pkgrel=3
+pkgver=20160607
+pkgrel=1
 _commit=1131ed5cf39044958f4fae58c974011506df9572
 arch=('any')
 url="https://github.com/manjaro/vertex-maia-icon-themes"
