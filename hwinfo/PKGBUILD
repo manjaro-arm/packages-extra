@@ -1,0 +1,45 @@
+# $Id$
+# Maintainer: Alexander F Rødseth <xyproto@archlinux.org>
+# Contributor: Kaiting Chen <kaitocracy@gmail.com>
+# Contributor: Gergely Imreh <imrehg@gmail.com>
+# Contributor: champus, madeye, ranguvar and ninja_pt
+
+pkgname=hwinfo
+pkgver=21.29_1.1
+_fn="$pkgname-${pkgver/_/-}.src.rpm"
+pkgrel=1
+pkgdesc='Hardware detection tool from openSUSE'
+arch=('x86_64' 'i686' 'armv6h' 'armv7h' 'aarch64')
+url='http://download.opensuse.org/source/tumbleweed/repo/oss/suse/src/'
+license=('GPL2')
+depends=('libx86emu' 'bash' 'perl')
+makedepends=('sysfsutils' 'rpmextract' 'flex' 'git')
+options=('!emptydirs')
+source=("http://download.opensuse.org/source/tumbleweed/repo/oss/suse/src/$_fn"
+        'custom_ioctl.patch')
+sha256sums=('9e8ba6a5276ae55c2603fc9bef476722d579a243e86fdd4a30e10f017b1d2cf8'
+            '621f4172854260a8b87967d718f8f03282fe02a99e7dca69af4d7245033066f3')
+
+prepare() {
+  # Wish upstream could just provide a normal $pkgname-$pkgver.tar.gz...
+  rpmextract.sh "$_fn"
+  tar Jxf "${_fn%-*.*}.tar.xz"
+
+  # Patching
+  cd "${_fn%-*.*}"
+  patch -p0 -i ../custom_ioctl.patch
+}
+
+build() {
+  make -C "${_fn%-*.*}" -j1 \
+    CFLAGS+="-fPIC -I$srcdir/${_fn%-*.*}/src/hd" \
+    LIBDIR=/usr/lib
+}
+
+package() {
+  make -C "${_fn%-*.*}" LIBDIR=/usr/lib DESTDIR="$pkgdir" install
+  mv "$pkgdir/usr/sbin" "$pkgdir/usr/bin"
+}
+
+# getver: -u 4 https://tracker.debian.org/pkg/hwinfo
+# vim:set ts=2 sw=2 et:
