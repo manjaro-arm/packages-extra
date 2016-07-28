@@ -6,15 +6,15 @@
 # Author: horst3180 @ deviantart
 
 pkgname=vertex-maia-themes
-pkgver=20160419
-pkgrel=2
-pkgdesc='official Manjaro Gtk, Metacity, Xfwm, Cinnamon and GNOME Shell themes, based on Vertex'
+pkgver=20160509
+pkgrel=1
+pkgdesc='Official Manjaro Gtk2/3, Metacity, Xfwm, Cinnamon and GNOME Shell themes, based on Vertex'
 _gnomever=3.20
 #_releasever=20160329
 ## use git commit including (partial) fix for FF scrollbars
-_releasever=6c6cfdbaadb04fb2ccf3c8cf11ffcee84873af2f
+_releasever=59eec1884d7e079ee65e3059832fe4bf31daa05b
 ## repo vertex-majaro:
-_commit=6f7877e29c123d9d6bded763d6e05edc18728346
+_commit=2c9ac40529a75eae99ddcf21cb21631e7ad10068
 arch=('any')
 url='http://horst3180.deviantart.com/art/Vertex-Theme-470663601'
 license=('GPL3')
@@ -25,8 +25,9 @@ replaces=('vertex-manjaro-themes')
 source=("vertex-${_releasever}.tar.gz::https://github.com/horst3180/Vertex-theme/archive/${_releasever}.tar.gz"
 	"vertex-manjaro-${_commit}.tar.gz::https://github.com/oberon2007/vertex-manjaro/archive/${_commit}.tar.gz"
 	'whiskermenu-rabideau.patch')
-sha256sums=('b2cf4ae08709cfa8ae5b4389e0bfd824d27ca9f73f0a09ce2be3c4b62dd4549d'
-            '3ee2436859d919d7a8a53ce42f4bc899e29935c49e13a6b9ee68b61fe9304c9f'
+install=$pkgname.install
+sha256sums=('8b990e3bd438ad2c51aa472d77d65988bed146066f985b491d571d79f3419493'
+            '41da06cab61bdd21d9df95896b81cb1c1ce48809d15f85eb566129b3be52512d'
             '7ea204b5f3f57faa24cf7c7bd96cd0a4a7c6836539a24fb3001731e2c5f26eb2')
 options=('!strip')
 
@@ -333,7 +334,7 @@ package() {
   ## fix corrupt metacity thumbnail
   tee $pkgdir/usr/share/themes/Vertex-Maia{,-Dark}/metacity-1/thumbnail.png < $srcdir/vertex-theme-$_releasever/common/metacity-1/thumbnail.png >/dev/null
 
-#  ## customization for whiskermenu - if desired
-#  cd $pkgdir/usr/share/themes/Vertex-Maia
-#  patch -p1 < $srcdir/whiskermenu-rabideau.patch
+  ## customization for whiskermenu
+  cd $pkgdir/usr/share/themes/Vertex-Maia
+  patch -p1 < $srcdir/whiskermenu-rabideau.patch
 }
