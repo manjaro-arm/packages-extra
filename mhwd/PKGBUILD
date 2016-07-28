@@ -58,22 +58,22 @@ build() {
 
 package_mhwd() {
   pkgdesc="Manjaro Linux Hardware Detection library and application"
-  depends=('hwinfo' 'mesa' 'mhwd-db' 'v86d' 'pacman')
+  depends=('hwinfo' 'mesa' 'mhwd-db' 'pacman')
   if [ "${CARCH}" = "x86_64" ]; then
      optdepends=('lib32-mesa: for 32bit support')
   fi
   install=mhwd.install
-  provides=('libgl' 'mesa-libgl' 'catalyst-libgl' 'catalyst-legacy-libgl')
+  provides=('libgl' 'mesa-libgl')
   if [ "${CARCH}" = "x86_64" ]; then
-       provides+=('lib32-libgl' 'lib32-mesa-libgl' 'lib32-catalyst-libgl')
+       provides+=('lib32-libgl')
   fi
-  replaces=('libgl' 'mesa-libgl' 'catalyst-libgl' 'catalyst-legacy-libgl')
+  replaces=('libgl' 'mesa-libgl')
   if [ "${CARCH}" = "x86_64" ]; then
-       replaces+=('lib32-libgl' 'lib32-mesa-libgl' 'lib32-catalyst-libgl')
+       replaces+=('lib32-libgl')
   fi
-  conflicts=('libgl' 'mesa-libgl' 'catalyst-libgl' 'catalyst-legacy-libgl')
+  conflicts=('libgl' 'mesa-libgl')
   if [ "${CARCH}" = "x86_64" ]; then
-       conflicts+=('lib32-libgl' 'lib32-mesa-libgl' 'lib32-catalyst-libgl')
+       conflicts+=('lib32-libgl')
   fi
 
   cd ${srcdir}/${pkgname}
@@ -97,11 +97,10 @@ package_mhwd-db() {
   pkgdesc="Manjaro Linux Hardware Detection Database"
   #arch=('i686' 'x86_64')
   arch=('any')
-  depends=('mhwd-nvidia' 'mhwd-nvidia-304xx' 'mhwd-nvidia-340xx'
-           'mhwd-catalyst' 'mhwd-ati' 'mhwd-amdgpu')
-  conflicts=("mhwd-db-catalyst")
-  provides=("mhwd-db-catalyst")
-  replaces=("mhwd-db-catalyst")
+  depends=()
+  conflicts=()
+  provides=()
+  replaces=()
   install=mhwd-db.install
 
   cd ${srcdir}/${pkgname}/
@@ -127,18 +126,18 @@ package_mhwd-db() {
   #fi
 }
 
-package_mhwd-db-catalyst() {
-  pkgdesc="Manjaro Linux Hardware Detection Database (Catalyst)"
-  depends=("mhwd-db>=0.2.4-2" 'mhwd-catalyst-legacy' 'mhwd-catalyst')
-  conflicts=("mhwd-db<0.2.4-2")
-  arch='any'
-  install=mhwd-db.install
+#package_mhwd-db-catalyst() {
+#  pkgdesc="Manjaro Linux Hardware Detection Database (Catalyst)"
+#  depends=("mhwd-db>=0.2.4-2" 'mhwd-catalyst-legacy' 'mhwd-catalyst')
+#  conflicts=("mhwd-db<0.2.4-2")
+#  arch='any'
+#  install=mhwd-db.install
 
-  getsource "mhwd-db" "git://git.manjaro.org/core/mhwd-db.git"
+#  getsource "mhwd-db" "git://git.manjaro.org/core/mhwd-db.git"
 
-  cd ${srcdir}/mhwd-db/
+#  cd ${srcdir}/mhwd-db/
 
-  mkdir -p ${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers
+#  mkdir -p ${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers
 
-  cp -r pci/graphic_drivers/catalyst* ${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers
-}
+#  cp -r pci/graphic_drivers/catalyst* ${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers
+#}
