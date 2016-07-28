@@ -24,7 +24,7 @@ source=("https://launchpad.net/~mvishah/+archive/ttf-dhivehi-fonts/+files/ttf-th
 noextract=()
 md5sums=('81c32e76e82b17fc61f90da20b40569d')
 
-build() {
+åackage() {
   cd "$srcdir"
   tar -xvzf data.tar.gz
   mkdir -p ${pkgdir}/usr/share/fonts/thaana-fonts

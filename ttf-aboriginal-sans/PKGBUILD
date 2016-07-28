@@ -12,7 +12,7 @@ source=('http://www.languagegeek.com/font/AboriginalSans.zip')
 arch=('any')
 sha256sums=('7744c3dd780c8e5d0755ec9dd4f9b1ecfdb589cd0b6b1afaf6fc223e314b4241')
 
- build() {
+ package() {
   install -Dm644 $srcdir/AboriginalSansBOLDITALIC.ttf $pkgdir/usr/share/fonts/TTF/AboriginalSansBOLDITALIC.ttf
   install -Dm644 $srcdir/AboriginalSansBOLD.ttf $pkgdir/usr/share/fonts/TTF/AboriginalSansBOLDITALIC.ttf
   install -Dm644 $srcdir/AboriginalSansITALIC.ttf $pkgdir/usr/share/fonts/TTF/AboriginalSansITALIC.ttf
