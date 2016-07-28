@@ -29,11 +29,11 @@ sha256sums=('11378b4e3580242a24e2f3988b34f6310c65d19defeb69c096390964209fcf85'
 prepare() {
   # adjust version string
   cd "$srcdir/pamac-$pkgver"
-  sed -i -e "s|\"$_pkgver\"|\"$pkgver-$pkgrel\"|g" src/transaction.vala 
+  sed -i -e "s|\"4.1.0\"|\"$pkgver-$pkgrel\"|g" src/transaction.vala 
   # patches here
-  patch -Np1 -i "$srcdir/preference-dialog.patch"
+  patch -Np1 -i "$srcdir/preferences-dialog.patch"
   patch -Np1 -i "$srcdir/hooks-progress-display.patch"
-  patch -Np1 -i "$srcdir/size-calculations.patch"
+  patch -Np1 -i "$srcdir/size-calculation.patch"
 }
 
 build() {
