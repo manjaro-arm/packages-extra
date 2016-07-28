@@ -15,6 +15,7 @@ makedepends=('gettext' 'itstool' 'vala>=0.28')
 backup=('etc/pamac.conf')
 replaces=('pamac-aur')
 options=(!emptydirs)
+-install=$pkgname.install
 
 source=("pamac-$pkgver-$pkgrel.tar.gz::https://github.com/manjaro/pamac/archive/v$_pkgver.tar.gz"
         'preferences-dialog.patch::https://github.com/manjaro/pamac/commit/5019f66b8673ac3a30f3e3174a85412ef9d72fd0.patch'
