@@ -1,8 +1,0 @@
-[Plymouth Theme]
-Name=Sonar Elegant
-Description=A theme that features a blank background with a logo.
-ModuleName=script
-
-[script]
-ImageDir=/usr/share/plymouth/themes/sonar-elegant
-ScriptFile=/usr/share/plymouth/themes/sonar-elegant/sonar-elegant.script

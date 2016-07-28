@@ -1,8 +1,0 @@
-[Plymouth Theme]
-Name=Manjaro Elegant HiDPI
-Description=A theme that features a blank background with a logo. (HiDPI version)
-ModuleName=script
-
-[script]
-ImageDir=/usr/share/plymouth/themes/manjaro-elegant-hidpi
-ScriptFile=/usr/share/plymouth/themes/manjaro-elegant-hidpi/manjaro-elegant-hidpi.script
