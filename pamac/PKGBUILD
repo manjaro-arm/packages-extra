@@ -1,8 +1,8 @@
 # Maintainer: Guillaume Benoit <guillaume@manjaro.org>
 
 pkgname=pamac
-pkgver=4.1.0
-_pkgver=4.1.0
+pkgver=3.2.1
+_pkgver=3.2.1
 pkgrel=1
 pkgdesc="A Gtk3 frontend for libalpm"
 arch=('armv6h' 'armv7h' 'i686' 'x86_64' 'aarch64')
@@ -14,26 +14,28 @@ optdepends=('yaourt: needed for AUR support')
 makedepends=('gettext' 'itstool' 'vala>=0.28')
 backup=('etc/pamac.conf')
 replaces=('pamac-aur')
+conflicts=('pamac-dev')
 options=(!emptydirs)
-install=$pkgname.install
+install=pamac.install
 
-source=("pamac-$pkgver-$pkgrel.tar.gz::https://github.com/manjaro/pamac/archive/v$_pkgver.tar.gz"
-        'preferences-dialog.patch::https://github.com/manjaro/pamac/commit/5019f66b8673ac3a30f3e3174a85412ef9d72fd0.patch'
-        'hooks-progress-display.patch::https://github.com/manjaro/pamac/commit/2285ad17fdb5a8707618db7fcfd381032eb66951.patch'
-        'size-calculation.patch::https://github.com/manjaro/pamac/commit/7af6ee34f0d8d1720ee34315f62f242ba3911b96.patch')
-sha256sums=('11378b4e3580242a24e2f3988b34f6310c65d19defeb69c096390964209fcf85'
-            'd6cf41683427c434a7ee8fb3b47a7bf4824f904a7d93cacc9420f831ad33cf81'
-            '899a668f26f78feebc357afd5d7325748d1010f107872e6b51129fc43225d4fc'
-            '5a497e866115c3e24385ca68bca885a30ad3806ed283639deb972382d24ff12b')
+if [ "${_gitcommit}" != "" ]; then
+  source=("pamac-$pkgver-$pkgrel.tar.gz::$url/archive/$_gitcommit.tar.gz")
+else
+  source=("pamac-$pkgver.tar.gz::$url/archive/v$pkgver.tar.gz")
+fi
+sha256sums=('45d15a8cb5d1bf9cf06be0b19cfa0552cb1a2c8a52a2c09848d58140e4235090')
+
 
 prepare() {
-  # adjust version string
-  cd "$srcdir/pamac-$pkgver"
-  sed -i -e "s|\"4.1.0\"|\"$pkgver-$pkgrel\"|g" src/transaction.vala 
+ if [ "$_gitcommit" != "" ]; then
+    mv "$srcdir/pamac-$_gitcommit" "$srcdir/pamac-$pkgver"
+ fi
+# adjust version string
+  cd "$srcdir/pamac-$pkgver/src"
+  sed -i -e "s|\"$_pkgver\"|\"$pkgver-$pkgrel\"|g" manager_window.vala
+
   # patches here
-  patch -Np1 -i "$srcdir/preferences-dialog.patch"
-  patch -Np1 -i "$srcdir/hooks-progress-display.patch"
-  patch -Np1 -i "$srcdir/size-calculation.patch"
+#  patch -Np1 -i "$srcdir/notification-improvment.patch"
 }
 
 build() {
