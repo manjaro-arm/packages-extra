@@ -1,8 +1,8 @@
 # Maintainer: Guillaume Benoit <guillaume@manjaro.org>
 
 pkgname=pamac
-pkgver=4.0.1
-_pkgver=4.0.1
+pkgver=4.1.0
+_pkgver=4.1.0
 pkgrel=1
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
 #_gitcommit="7266a5766441725210e7e4af3ee7da501cf0e38f"
