@@ -63,7 +63,7 @@ package_mhwd() {
      optdepends=('lib32-mesa: for 32bit support')
   fi
   install=mhwd.install
-  provides=('libgl' 'mesa-libgl')
+  provides=('libgl' 'libgles' 'libegl' 'mesa-libgl')
   if [ "${CARCH}" = "x86_64" ]; then
        provides+=('lib32-libgl')
   fi
@@ -71,7 +71,7 @@ package_mhwd() {
   if [ "${CARCH}" = "x86_64" ]; then
        replaces+=('lib32-libgl')
   fi
-  conflicts=('libgl' 'mesa-libgl')
+  conflicts=('libgl' 'libgles' 'libegl' 'mesa-libgl')
   if [ "${CARCH}" = "x86_64" ]; then
        conflicts+=('lib32-libgl')
   fi
