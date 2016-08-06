@@ -1,8 +1,8 @@
 # Maintainer: Guillaume Benoit <guillaume@manjaro.org>
 
 pkgname=pamac
-pkgver=4.0.1
-_pkgver=4.0.1
+pkgver=4.1.0
+_pkgver=4.1.0
 pkgrel=1
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
 #_gitcommit="7266a5766441725210e7e4af3ee7da501cf0e38f"
@@ -28,7 +28,7 @@ else
   source=("pamac-$pkgver.tar.gz::$url/archive/v$pkgver.tar.gz")
 fi
 
-sha256sums=('45d15a8cb5d1bf9cf06be0b19cfa0552cb1a2c8a52a2c09848d58140e4235090')
+sha256sums=('11378b4e3580242a24e2f3988b34f6310c65d19defeb69c096390964209fcf85')
 
 prepare() {
   if [ "$_gitcommit" != "" ]; then
