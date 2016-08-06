@@ -5,7 +5,7 @@
 # Contributor: champus, madeye, ranguvar and ninja_pt
 
 pkgname=hwinfo
-pkgver=21.29_1.1
+pkgver=21.30_1.1
 _fn="$pkgname-${pkgver/_/-}.src.rpm"
 pkgrel=1
 pkgdesc='Hardware detection tool from openSUSE'
