@@ -6,7 +6,7 @@
 pkgname=libx86emu
 pkgver=1.11_1
 _fn="$pkgname-${pkgver/_/-}.1.src.rpm"
-pkgrel=1
+pkgrel=2
 pkgdesc='x86 emulation library'
 arch=('x86_64' 'i686' 'armv6h' 'armv7h' 'aarch64')
 url='http://download.opensuse.org/source/factory/repo/oss/suse/src/'
