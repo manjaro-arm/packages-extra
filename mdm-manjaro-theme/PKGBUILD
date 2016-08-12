@@ -1,22 +1,22 @@
 # Maintainer: Josh Crowder <dodgejcr@manjaro-arm.org>
-pkgname=mdmodern-mdm-theme
-_gitname="MDModern"
+pkgname=mdm-manjaro-theme
+_gitname="mdm-manjaro-theme"
 pkgver=1.0
 pkgrel=1
-pkgdesc="An HTML5 theme for MDM's webkit greeter."
+pkgdesc="An HTML5 theme for MDM's webkit greeter based off of MDModern by Phillip Miller."
 arch=('any')
-url="https://github.com/manjaro-arm/MDModern"
+url="https://github.com/manjaro-arm/mdm-manjaro-theme"
 license=('GPL3')
 
 makedepends=('git')
 
 source=(
-  "$_gitname::git+https://github.com/manjaro-arm/MDModern.git"
+  "$_gitname::git+https://github.com/manjaro-arm/mdm-manjaro-theme.git"
 )
 
 sha256sums=('SKIP')
 
-_gitroot=https://github.com/manjaro-arm/MDModern.git
+_gitroot=https://github.com/manjaro-arm/mdm-manjaro-theme.git
 
 pkgver() {
   cd "$srcdir/$_gitname"
