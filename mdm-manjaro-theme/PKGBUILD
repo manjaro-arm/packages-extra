@@ -1,7 +1,7 @@
 # Maintainer: Josh Crowder <dodgejcr@manjaro-arm.org>
 pkgname=mdm-manjaro-theme
 _gitname="mdm-manjaro-theme"
-pkgver=1.0
+pkgver=20160812.b133cd7
 pkgrel=1
 pkgdesc="An HTML5 theme for MDM's webkit greeter based off of MDModern by Phillip Miller."
 arch=('any')
