@@ -25,7 +25,7 @@ pkgver() {
 
 package() {
   cd "$srcdir/$_gitname"
-  destdir="${pkgdir}/usr/share/mdm/html-themes/mdmodern/"
+  destdir="${pkgdir}/usr/share/mdm/html-themes/mdm-manjaro-theme/"
   mkdir -p ${destdir}
   cp -r * ${destdir}
 }
