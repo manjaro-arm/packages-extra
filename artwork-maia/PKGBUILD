@@ -2,16 +2,16 @@
 
 pkgbase=artwork-maia
 pkgname=('maia-icon-theme' 'plasma5-themes-maia' 'sddm-maia-theme' 'maia-wallpaper')
-pkgver=0.6.0
+pkgver=0.7.0
 pkgrel=1
-_gitcommit=23235fa56e6111d30e9f92576030cc855a0facbe
+_gitcommit=a91f54cb344f8e92595b2df1915e09e19c97fd0f
 url=https://github.com/manjaro/artwork-maia/
 arch=('any')
 license=('LGPL')
 makedepends=('extra-cmake-modules' 'plasma-framework')
 
 source=("maia-$pkgver-$pkgrel.tar.gz::$url/archive/$_gitcommit.tar.gz")
-md5sums=('c81983014ff120e6a104ac2101684f6a')
+md5sums=('b7c80bcba974d178a89a286d609ecc76')
 
 prepare() {
   mv $srcdir/artwork-maia-$_gitcommit $srcdir/maia
@@ -38,6 +38,7 @@ package_maia-icon-theme() {
   make DESTDIR="${pkgdir}" install
   rm -rf "${pkgdir}/usr/share/color-schemes"
   rm -rf "${pkgdir}/usr/share/kservices5"
+  rm -rf "${pkgdir}/usr/share/metainfo"
   rm -rf "${pkgdir}/usr/share/plasma"
   rm -rf "${pkgdir}/usr/share/sddm"
   rm -rf "${pkgdir}/usr/share/wallpapers"
@@ -61,6 +62,7 @@ package_sddm-maia-theme() {
   rm -rf "${pkgdir}/usr/share/color-schemes"
   rm -rf "${pkgdir}/usr/share/icons"
   rm -rf "${pkgdir}/usr/share/kservices5"
+  rm -rf "${pkgdir}/usr/share/metainfo"
   rm -rf "${pkgdir}/usr/share/plasma"
   rm -rf "${pkgdir}/usr/share/wallpapers"
 }
