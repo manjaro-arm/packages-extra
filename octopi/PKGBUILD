@@ -1,0 +1,229 @@
+# Maintainer: Philip Müller <philm[at]manjaro[dot]org>
+# Maintainer: Rob McCathie <rob[at]manjaro[dot]org>
+# Maintainer: Alexandre Arnt <arnt[at]manjaro[dot]org>
+# Maintainer: Roland Singer <roland[at]manjaro[dot]org>
+# Maintainer: Ramon Buldó <ramon[at]manaro[dot]org>
+# Maintainer: Tomasz Przybył <fademind[at]manaro[dot]org>
+
+## Why there are 3 notifier packages:
+## https://classicforum.manjaro.org/index.php?topic=17673.msg163296#msg163296
+## https://classicforum.manjaro.org/index.php?topic=17673.msg171500#msg171500
+
+pkgbase=octopi
+pkgname=('octopi' 'octopi-repoeditor' 'octopi-pacmanhelper' 'octopi-cachecleaner'
+         'octopi-notifier-qt4' 'octopi-notifier-qt5' 'octopi-notifier-frameworks')
+pkgver=0.8.4
+pkgrel=1
+# This is the release package so the below _gitcommit variable should (usually) be commented out.
+_gitcommit="eeefd390358c75d3af24b732c250ef092fd3250d"
+arch=('i686' 'x86_64')
+url="http://octopiproject.wordpress.com"
+license=('GPL2')
+makedepends=('qt5-declarative' 'qt4' 'knotifications' 'libnotify')
+
+if [ "${_gitcommit}" != "" ]; then
+  source=("octopi-${pkgver}-${pkgrel}.tar.gz::https://github.com/aarnt/octopi/archive/${_gitcommit}.tar.gz")
+else
+  source=("octopi-${pkgver}.tar.gz::https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz")
+fi
+
+sha256sums=('c113995eeeb4e40d5f1400b53e36a0ddabc9c39c773dfc7cecd9943a70aef558')
+
+
+prepare() {
+  if [ "${_gitcommit}" != "" ]; then
+    cd "${srcdir}/${pkgbase}-${_gitcommit}"
+  else
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+  fi
+
+  # sed version
+  sed -i -e "s|0.9.0 (dev)|${pkgver}-${pkgrel}|g" src/strconstants.h
+
+  cp -r notifier notifier-qt4
+  cp -r notifier notifier-qt5
+  cp -r notifier notifier-frameworks
+  sed -i 's|#DEFINES += KSTATUS|DEFINES += KSTATUS|' notifier-frameworks/octopi-notifier/octopi-notifier.pro
+}
+
+build() {
+  cpucount=$(grep -c processor /proc/cpuinfo 2>/dev/null)
+  jc=$((${cpucount:-1}))
+
+  if [ "${_gitcommit}" != "" ]; then
+    cd "${srcdir}/${pkgbase}-${_gitcommit}"
+  else
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+  fi
+
+  msg "Starting build..."
+  qmake-qt5 octopi.pro
+  make -j $jc
+
+  cd notifier/pacmanhelper
+  msg "Building pacmanhelper..."
+  qmake-qt5 pacmanhelper.pro
+  make -j $jc
+
+  cd ../../notifier-qt4/octopi-notifier
+  msg "Building octopi-notifier-qt4..."
+  qmake-qt4 octopi-notifier.pro
+  make -j $jc
+
+  cd ../../notifier-qt5/octopi-notifier
+  msg "Building octopi-notifier-qt5..."
+  qmake-qt5 octopi-notifier.pro
+  make -j $jc
+
+  cd ../../notifier-frameworks/octopi-notifier
+  msg "Building octopi-notifier-frameworks..."
+  qmake-qt5 octopi-notifier.pro
+  make -j $jc
+
+  cd ../../repoeditor
+  msg "Building octopi-repoeditor..."
+  qmake-qt5 octopi-repoeditor.pro
+  make -j $jc
+
+  cd ../cachecleaner
+  msg "Building octopi-cachecleaner..."
+  qmake-qt5 octopi-cachecleaner.pro
+  make -j $jc
+}
+
+package_octopi() {
+  pkgdesc="A powerful Pacman frontend using Qt5 libs"
+  depends=('qt5-base' 'qt5-declarative' 'xterm')
+  optdepends=('kdesu: for KDE'
+              'gksu: for XFCE, Gnome, LXDE, Cinnamon'
+              'lxqt-sudo: for LXQT'
+              'gnome-keyring: for password management'
+              'gist: for SysInfo report'
+              'pacaur: for AUR support'
+              'yaourt: for AUR support'
+              'octopi-repoeditor: for editing functions'
+              'octopi-cachecleaner: for cleaning functions'
+              'octopi-notifier-qt4: for notifications'
+              'octopi-notifier-qt5: for notifications'
+              'octopi-notifier-frameworks: for notifications with Knotifications support'
+              'pacmanlogviewer: to view pacman log files')
+  replaces=('octopi-qt5')
+
+  if [ "${_gitcommit}" != "" ]; then
+    cd "${srcdir}/${pkgbase}-${_gitcommit}"
+  else
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+  fi
+
+  install -Dm755 "bin/octopi" "${pkgdir}/usr/bin/octopi"
+  install -Dm644 "octopi.desktop" "${pkgdir}/usr/share/applications/octopi.desktop"
+  install -Dm644 "resources/images/octopi_green.png" "${pkgdir}/usr/share/icons/octopi.png"
+  install -Dm644 "resources/images/octopi_green.png" "${pkgdir}/usr/share/icons/hicolor/48x48/apps/octopi.png"
+  install -Dm644 "resources/images/octopi_red.png" "${pkgdir}/usr/share/icons/octopi_red.png"
+  install -Dm644 "resources/images/octopi_yellow.png" "${pkgdir}/usr/share/icons/octopi_yellow.png"
+
+  install -D -m755 speedup/speedup-octopi.sh ${pkgdir}/usr/bin/speedup-octopi.sh
+  install -D -m644 speedup/octopi.service ${pkgdir}/etc/systemd/system/octopi.service
+}
+
+package_octopi-pacmanhelper() {
+  pkgdesc="Pacman helper for Octopi notifier"
+  depends=('qt5-base')
+
+  if [ "${_gitcommit}" != "" ]; then
+    cd "${srcdir}/${pkgbase}-${_gitcommit}"
+  else
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+  fi
+
+  install -Dm755 "notifier/bin/pacmanhelper" "${pkgdir}/usr/lib/octopi/pacmanhelper"
+  install -Dm644 "notifier/pacmanhelper/polkit/org.octopi.pacman.policy" "${pkgdir}/usr/share/polkit-1/actions/org.octopi.pacman.policy"
+  install -Dm644 "notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.conf" "${pkgdir}/etc/dbus-1/system.d/org.octopi.pacmanhelper.conf"
+  install -Dm644 "notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.xml" "${pkgdir}/usr/share/dbus-1/interfaces/org.octopi.pacmanhelper.xml"
+  install -Dm644 "notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.service" "${pkgdir}/usr/share/dbus-1/system-services/org.octopi.pacmanhelper.service"
+}
+
+package_octopi-repoeditor() {
+  pkgdesc="Repoeditor for Octopi"
+  depends=('qt5-base')
+
+  if [ "${_gitcommit}" != "" ]; then
+    cd "${srcdir}/${pkgbase}-${_gitcommit}"
+  else
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+  fi
+
+  install -D -m755 "repoeditor/bin/octopi-repoeditor" "${pkgdir}/usr/bin/octopi-repoeditor"
+}
+
+package_octopi-cachecleaner() {
+  pkgdesc="Cachecleaner for Octopi"
+  depends=('qt5-base')
+
+  if [ "${_gitcommit}" != "" ]; then
+    cd "${srcdir}/${pkgbase}-${_gitcommit}"
+  else
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+  fi
+
+  install -D -m755 "cachecleaner/bin/octopi-cachecleaner" "${pkgdir}/usr/bin/octopi-cachecleaner"
+  install -D -m644 "cachecleaner/octopi-cachecleaner.desktop" "${pkgdir}/usr/share/applications/octopi-cachecleaner.desktop"
+}
+
+package_octopi-notifier-qt4() {
+  pkgdesc="Notifier for Octopi using Qt4 libs"
+  depends=('octopi-pacmanhelper' 'libnotify' 'qt4')
+  optdepends=('octopi: launch graphical package manager from tray'
+              'xfce4-notifyd: for notifications in XFCE')
+  conflicts=('octopi-notifier')
+  provides=("octopi-notifier=${pkgver}")
+  replaces=('octopi-notifier')
+
+  if [ "${_gitcommit}" != "" ]; then
+    cd "${srcdir}/${pkgbase}-${_gitcommit}"
+  else
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+  fi
+
+  # Octopi-notifier-qt4 files
+  install -Dm755 "notifier-qt4/bin/octopi-notifier" "${pkgdir}/usr/bin/octopi-notifier"
+  install -Dm644 "octopi-notifier.desktop" "${pkgdir}/etc/xdg/autostart/octopi-notifier.desktop"
+}
+
+package_octopi-notifier-qt5() {
+  pkgdesc="Notifier for Octopi using Qt5 libs"
+  depends=('octopi-pacmanhelper' 'libnotify' 'qt5-base')
+  optdepends=('octopi: launch graphical package manager from tray'
+              'xfce4-notifyd: for notifications in XFCE')
+  conflicts=('octopi-notifier')
+  provides=("octopi-notifier=${pkgver}")
+  replaces=('octopi-qt5-notifier')
+
+  if [ "${_gitcommit}" != "" ]; then
+    cd "${srcdir}/${pkgbase}-${_gitcommit}"
+  else
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+  fi
+
+  # Octopi-notifier-qt5 files
+  install -Dm755 "notifier-qt5/bin/octopi-notifier" "${pkgdir}/usr/bin/octopi-notifier"
+  install -Dm644 "octopi-notifier.desktop" "${pkgdir}/etc/xdg/autostart/octopi-notifier.desktop"
+}
+
+package_octopi-notifier-frameworks() {
+  pkgdesc="Notifier for Octopi with Knotifications support"
+  depends=('octopi-pacmanhelper' 'knotifications' 'qt5-base')
+  optdepends=('octopi: launch graphical package manager from tray')
+  conflicts=('octopi-notifier')
+  provides=("octopi-notifier=${pkgver}")
+
+  if [ "${_gitcommit}" != "" ]; then
+    cd "${srcdir}/${pkgbase}-${_gitcommit}"
+  else
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+  fi
+
+  # Octopi-notifier-frameworks files
+  install -Dm755 "notifier-frameworks/bin/octopi-notifier" "${pkgdir}/usr/bin/octopi-notifier"
+  install -Dm644 "octopi-notifier.desktop" "${pkgdir}/etc/xdg/autostart/octopi-notifier.desktop"
+}
