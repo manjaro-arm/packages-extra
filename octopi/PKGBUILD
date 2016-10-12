@@ -16,7 +16,7 @@ pkgver=0.8.4
 pkgrel=1
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
 _gitcommit="eeefd390358c75d3af24b732c250ef092fd3250d"
-arch=('i686' 'x86_64')
+arch=('armv6h' 'armv7h' 'i686' 'x86_64' 'aarch64')
 url="http://octopiproject.wordpress.com"
 license=('GPL2')
 makedepends=('qt5-declarative' 'qt4' 'knotifications' 'libnotify')
