@@ -1,0 +1,49 @@
+# $Id$
+# Maintainer: Felix Yan <felixonmars@archlinux.org>
+# Contributor: Andrea Scarpino <andrea@archlinux.org>
+# Contributor: Antonio Rojas
+
+pkgname=kinfocenter
+pkgver=5.8.2
+pkgrel=1.1
+pkgdesc='A utility that provides information about a computer system'
+arch=('i686' 'x86_64')
+url='https://www.kde.org/applications/system/kinfocenter/'
+license=('LGPL')
+depends=('kdelibs4support' 'kcmutils' 'pciutils' 'glu' 'libraw1394' 'kwayland')
+makedepends=('extra-cmake-modules' 'kdoctools' 'python' 'plasma-framework' 'kdesignerplugin')
+conflicts=('kdebase-workspace')
+groups=('plasma')
+source=("http://download.kde.org/stable/plasma/${pkgver}/$pkgname-$pkgver.tar.xz"{,.sig} 
+        'manjaro-logo.svg'
+        'kcm-about-distrorc')
+sha256sums=('c52037d88850ec8237eae7fda3e4c9e4bbedf7e5ac02e7da205e1ffe991b34c8'
+            'SKIP'
+            '65b2a36fd9b2ddde6305ce9341da46f633244cf3b794b272c9981e43459f80de'
+            '028ce1e24cdcdbae117c46aed839e1a6e5fc03679fc4dd7742a44020e4f604fe')
+validpgpkeys=('2D1D5B0588357787DE9EE225EC94D18F7F05997E'  # Jonathan Riddell
+              'D07BD8662C56CB291B316EB2F5675605C74E02CF') # David Edmundson
+
+prepare() {
+  mkdir -p build
+}
+
+build() {
+  cd build
+  cmake ../${pkgname}-${pkgver} \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DKDE_INSTALL_LIBDIR=lib \
+    -DBUILD_TESTING=OFF
+  make
+}
+
+package() {
+  cd build
+  make DESTDIR="${pkgdir}" install
+
+# Install Manjaro logo
+  install -Dm644 "$srcdir"/manjaro-logo.svg "$pkgdir"/usr/share/about-distro/manjaro-logo.svg
+  install -Dm644 "$srcdir"/kcm-about-distrorc "$pkgdir"/etc/xdg/kcm-about-distrorc
+}
+ 
