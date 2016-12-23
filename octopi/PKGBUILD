@@ -13,7 +13,7 @@ pkgbase=octopi
 pkgname=('octopi' 'octopi-repoeditor' 'octopi-pacmanhelper' 'octopi-cachecleaner'
          'octopi-notifier-qt5' 'octopi-notifier-frameworks')
 pkgver=0.8.5
-pkgrel=4
+pkgrel=5
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
 _gitcommit="872d5fc7f73f561e4157916b126a8ed65fd2ae6e"
 arch=('armv6h' 'armv7h' 'aarch64' 'i686' 'x86_64')
