@@ -4,35 +4,35 @@
 pkgbase=manjaro-artwork
 pkgname=('manjaro-artwork') # 'manjaro-artwork-extra' 'manjaro-artwork-openbox' 'manjaro-artwork-icons')
 pkgver=1.0.8
-pkgrel=2
+pkgrel=3
 arch=('any')
 url="http://manjaro.org"
+depends=('manjaro-icons')
 makedeps=('git' 'imagemagick')
-source=('logo5.png'
-	'whiskermenu-manjaro.svg'
-	'Wallpaper-ST2-Red.jpg'
+source=('Wallpaper-ST2-Red.jpg'
 	'Wallpaper-ST2-Purple.jpg'
 	'Wallpaper-ST2-Green.jpg'
 	'Wallpaper-ST2-Blue.jpg'
-	'Wallpaper-ST2-Black.jpg'
-)
-sha256sums=(
-            'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP'
-)
+	'Wallpaper-ST2-Black.jpg')
+	
+md5sums=('f2ee3de4d6056edd95066ddc55efa56d'
+         '41e676b35e52ee1954669fa0fd151595'
+         '08e98b33c239514c91ee7902b3829c77'
+         '39331444557c29b1de17b1e716937ca8'
+         '96d949410faf96312499798710fd312b')
 
 package_manjaro-artwork() {
   pkgdesc="Artwork for Manjaro (default)"
   license=('GPL')
   optdepends=('manjaro-artwork-extra: extra wallpapers')
-  install -Dm644 "${srcdir}/whiskermenu-manjaro.svg" "${pkgdir}/usr/share/icons/whiskermenu-manjaro.svg"
-  install -Dm644 "${srcdir}/logo5.png" "${pkgdir}/usr/share/icons/logo5.png"
   install -Dm644 "${srcdir}/Wallpaper-ST2-Black.jpg" "${pkgdir}/usr/share/backgrounds/Wallpaper-ST2-Black.jpg"
   install -Dm644 "${srcdir}/Wallpaper-ST2-Blue.jpg" "${pkgdir}/usr/share/backgrounds/Wallpaper-ST2-Blue.jpg"
   install -Dm644 "${srcdir}/Wallpaper-ST2-Green.jpg" "${pkgdir}/usr/share/backgrounds/Wallpaper-ST2-Green.jpg"
   install -Dm644 "${srcdir}/Wallpaper-ST2-Purple.jpg" "${pkgdir}/usr/share/backgrounds/Wallpaper-ST2-Purple.jpg"
   install -Dm644 "${srcdir}/Wallpaper-ST2-Red.jpg" "${pkgdir}/usr/share/backgrounds/Wallpaper-ST2-Red.jpg"
-  ln -s "logo5.png" "${pkgdir}/usr/share/icons/manjaro-logo.png"
-  ln -s "logo5.png" "${pkgdir}/usr/share/icons/manjaro.png"
+  install -dm755 $pkgdir/usr/share/icons
+  ln -s /usr/share/icons/manjaro/green/128x128.png "${pkgdir}/usr/share/icons/manjaro-logo.png"
+  ln -s /usr/share/icons/manjaro/green/128x128.png "${pkgdir}/usr/share/icons/manjaro.png"
   ln -s "Wallpaper-ST2-Black.jpg" "${pkgdir}/usr/share/backgrounds/manjaro.jpg"
   # link for xfce
   mkdir -p "${pkgdir}/usr/share/backgrounds/xfce"
@@ -40,6 +40,7 @@ package_manjaro-artwork() {
   do
       ln -s "../${i}" "${pkgdir}/usr/share/backgrounds/xfce/${i}"
   done
+  ln -s /usr/share/icons/manjaro/maia/maia.svg $pkgdir/usr/share/icons/whiskermenu-manjaro.svg
 }
 
 package_manjaro-artwork-extra() {
@@ -70,6 +71,7 @@ package_manjaro-artwork-extra() {
   do
       ln -s "../${i}" "${pkgdir}/usr/share/backgrounds/xfce/${i}"
   done
+  ln -s /usr/share/icons/manjaro/maia/maia.svg $pkgdir/usr/share/icons/whiskermenu-manjaro.svg
 }
 
 package_manjaro-artwork-openbox() {
@@ -112,6 +114,7 @@ package_manjaro-artwork-openbox() {
   do
       ln -s "../${i}" "${pkgdir}/usr/share/backgrounds/xfce/${i}"
   done
+  ln -s /usr/share/icons/manjaro/maia/maia.svg $pkgdir/usr/share/icons/whiskermenu-manjaro.svg
 }
 
 package_manjaro-artwork-icons() {
