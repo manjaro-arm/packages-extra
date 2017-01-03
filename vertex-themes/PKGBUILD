@@ -1,28 +1,25 @@
-# Maintainer: CanalGuada <dguadal at free dot fr>
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
 # Author: horst3180 @ deviantart
 
 pkgname=vertex-themes
-pkgver=20160424
-pkgrel=1
+pkgver=20161125
+pkgrel=2
 pkgdesc='Vertex Gtk2, Gtk3, Metacity, Xfwm, Cinnamon and GNOME Shell themes.'
-_gnomever=3.20
-# temporary grab from last commit
-_releasever=6c6cfdbaadb04fb2ccf3c8cf11ffcee84873af2f
+_gnomever=3.22
+_commit=c861918a7fccf6d0768d45d790a19a13bb23485e
 arch=('any')
 url='http://horst3180.deviantart.com/art/Vertex-Theme-470663601'
 license=('GPL3')
 depends=('gtk-engine-murrine')
-provides=('vertex-themes')
-conflicts=('vertex-themes-git')
-source=("${pkgname}-${_releasever}.tar.gz::https://github.com/horst3180/Vertex-theme/archive/${_releasever}.tar.gz")
-sha256sums=('b2cf4ae08709cfa8ae5b4389e0bfd824d27ca9f73f0a09ce2be3c4b62dd4549d')
+source=("vertex-$_commit.tar.gz::https://github.com/horst3180/Vertex-theme/archive/$_commit.tar.gz")
+sha256sums=('87c4c356fa10d7252270e6f3a8b0d459eedf5e4f9c9b904e3f5d8999c195638c')
 
 build() {
-  cd vertex-theme-${_releasever}
+  cd vertex-theme-${_commit}
   ./autogen.sh --prefix=/usr --with-gnome=${_gnomever}
 }
 package() {
-  cd vertex-theme-${_releasever}
+  cd vertex-theme-${_commit}
 
   make DESTDIR="$pkgdir" install
   cd extra
@@ -34,5 +31,3 @@ package() {
   install -Dm644 COPYING "$pkgdir/usr/share/licenses/$pkgname/COPYING"
   install -Dm644 README.md "$pkgdir/usr/share/themes/Vertex/README"
 }
-
-# vim: ts=2 sw=2 et:
