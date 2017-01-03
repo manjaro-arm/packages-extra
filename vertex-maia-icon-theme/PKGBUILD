@@ -4,20 +4,24 @@
 
 pkgname=vertex-maia-icon-theme
 _folder=vertex-maia-icon-themes
-pkgver=20160607
+pkgver=20160809
 pkgrel=1
-_commit=1131ed5cf39044958f4fae58c974011506df9572
+_commit=4ab887ef1469e3232a1e619f95b924001493e5b1
 arch=('any')
 url="https://github.com/manjaro/vertex-maia-icon-themes"
 license=('GPL')
 depends=('hicolor-icon-theme' 'librsvg')
 options=('!emptydirs' '!strip')
 source=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/archive/$_commit.tar.gz")
-md5sums=('b41ba66f71f5952b48f29392a789383f')
+md5sums=('94e9bebcb37e0320eee54cbfde576b38')
+
+pkgver() {
+	date +%Y%m%d
+}
 
 package() {
   pkgdesc="Icons matching Vertex Maia themes, based on Menda Circle"
-  optdepends=('vertex-maia-themes: Official Manjaro Gtk2, Gtk3, Metacity, Xfwm, Openbox, Cinnamon and GNOME Shell themes')
+  optdepends=('vertex-maia-themes: Official Manjaro Gtk2/3, Metacity, Xfwm, Cinnamon and GNOME Shell themes')
 
   install -dm755 "${pkgdir}/usr/share/icons"
 
