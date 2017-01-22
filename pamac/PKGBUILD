@@ -16,7 +16,7 @@ makedepends=('gettext' 'itstool' 'vala>=0.28' 'libappindicator-gtk3')
 options=(!emptydirs)
 
 source=("pamac-$pkgver-$pkgrel.tar.gz::https://github.com/manjaro/pamac/archive/v$_pkgver.tar.gz")
-sha256sums=('5413dd62aeb1744820c3f5d7a7a25fa435dd3618b04beb809e9bb9c7575fa8e0')
+sha256sums=('3f0a5668031a1be1ce8801778dc4450ddef64a4a01c0856fbebceeecfd80db7b')
   
 prepare() {
   # adjust version string
