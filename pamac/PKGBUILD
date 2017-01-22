@@ -23,7 +23,6 @@ prepare() {
   cd "$srcdir/pamac-$_pkgver"
   sed -i -e "s|\"$_pkgver\"|\"$pkgver-$pkgrel\"|g" src/transaction.vala
   # patches here
-  patch -p1 -i "$srcdir/aur-search.patch"
 }
 
 build() {
