@@ -4,8 +4,8 @@
 # Contributor: Antonio Rojas
 
 pkgname=kinfocenter
-pkgver=5.8.5
-pkgrel=1
+pkgver=5.9.0
+pkgrel=2
 pkgdesc='A utility that provides information about a computer system'
 arch=('armv6h' 'armv7h' 'aarch64' 'i686' 'x86_64')
 url='https://www.kde.org/applications/system/kinfocenter/'
@@ -18,7 +18,7 @@ source=("http://download.kde.org/stable/plasma/${pkgver}/$pkgname-$pkgver.tar.xz
         'manjaro-logo.svg'
         'kcm-about-distrorc')
 sha256sums=('f7bd2b1389245f73d89dfe0f6229e3ecd9e04bf7a235e369ca992d3ad3b27aba'
-            '65b2a36fd9b2ddde6305ce9341da46f633244cf3b794b272c9981e43459f80de'
+            '7d2c58b078fd87094a0a65d86b303841b2462ca578d5bc7e2bb64fb5c4003eae'
             '028ce1e24cdcdbae117c46aed839e1a6e5fc03679fc4dd7742a44020e4f604fe')
 #validpgpkeys=('2D1D5B0588357787DE9EE225EC94D18F7F05997E'  # Jonathan Riddell
 #              'D07BD8662C56CB291B316EB2F5675605C74E02CF') # David Edmundson
