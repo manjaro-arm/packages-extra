@@ -17,7 +17,7 @@ groups=('plasma')
 source=("http://download.kde.org/stable/plasma/${pkgver}/$pkgname-$pkgver.tar.xz"
         'manjaro-logo.svg'
         'kcm-about-distrorc')
-sha256sums=('f7bd2b1389245f73d89dfe0f6229e3ecd9e04bf7a235e369ca992d3ad3b27aba'
+sha256sums=('a187172bfec27001d54b1a7822904e65ec00342ae99553ae68ea7f6b8065f5de'
             '7d2c58b078fd87094a0a65d86b303841b2462ca578d5bc7e2bb64fb5c4003eae'
             '028ce1e24cdcdbae117c46aed839e1a6e5fc03679fc4dd7742a44020e4f604fe')
 #validpgpkeys=('2D1D5B0588357787DE9EE225EC94D18F7F05997E'  # Jonathan Riddell
