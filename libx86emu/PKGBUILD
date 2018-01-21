@@ -5,7 +5,7 @@
 
 pkgname=libx86emu
 pkgver=1.12_1
-_fn="$pkgname-${pkgver/_/-}.2.src.rpm"
+_fn="$pkgname-${pkgver/_/-}.3.src.rpm"
 pkgrel=2
 pkgdesc='x86 emulation library'
 arch=('x86_64' 'i686' 'armv6h' 'armv7h' 'aarch64')
@@ -14,7 +14,7 @@ license=('BSD')
 depends=('glibc')
 makedepends=('rpmextract')
 source=("http://download.opensuse.org/source/factory/repo/oss/suse/src/$_fn")
-sha256sums=('4771b109d7f5f3592a815d5ee62fecddee0339431cb23a84ec29acc6ce2fb9f2')
+sha256sums=('86bb1292a2b3b42cb67bf5c5f47eed055abc11e5861ae660d9bfcea992acf021')
 
 prepare() {
   # Wish they would just provide a normal $pkgname-$pkgver.tar.gz...
