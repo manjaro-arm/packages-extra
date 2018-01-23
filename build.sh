@@ -47,14 +47,14 @@ sudo cp -rp /var/lib/jenkins/workspace/$2/$2/ $_ROOTFS/home/manjaro/build/
 #build package
 msg "===== Building {$2} ====="
 sudo systemd-nspawn -D $_ROOTFS/ -u manjaro --chdir=/home/manjaro/ sudo chmod -R 777 build/
-sudo systemd-nspawn -D $_ROOTFS/ -u manjaro --chdir=/home/manjaro/build/ makepkg -scr --noconfirm
+sudo systemd-nspawn -D $_ROOTFS/ -u manjaro --chdir=/home/manjaro/build/ makepkg -scr --noconfirm --sign
 #read -p "Press [Enter] to continue"
 
 if ls $_ROOTFS/home/manjaro/build/*.pkg.tar.xz* 1> /dev/null 2>&1; then
     #pull package out of rootfs
     msg "!!!!! +++++ ===== Package Succeeded ===== +++++ !!!!!"
     msg "===== Extracting finish/home/jenkins/build/ed package out of rootfs ====="
-    cp $_ROOTFS/home/manjaro/build/*.pkg.tar.xz $_PKGDIR/$3/$1/
+    cp $_ROOTFS/home/manjaro/build/*.pkg.tar.xz* $_PKGDIR/$3/$1/
 
     #clean up rootfs
     msg "===== Cleaning rootfs ====="
