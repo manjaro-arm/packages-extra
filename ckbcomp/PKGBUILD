@@ -3,15 +3,15 @@
 # Maintainer: Dan Johansen <strit@strits.dk>
 
 pkgname=ckbcomp
-pkgver=1.175
-pkgrel=2
+pkgver=1.177
+pkgrel=1
 pkgdesc="Compile a XKB keyboard description to a keymap suitable for loadkeys or kbdcontrol"
 arch=('any')
 url="http://anonscm.debian.org/cgit/d-i/console-setup.git/"
 license=('GPL2')
 depends=('perl')
-source=("http://ftp.de.debian.org/debian/pool/main/c/console-setup/console-setup_1.175.tar.xz")
-sha256sums=('8ebb79d826cdfc4c4466a2021f2a85742df4f52a9f9bfe6e4f5bc67c6fcf8b8c')
+source=("http://ftp.de.debian.org/debian/pool/main/c/console-setup/console-setup_1.177.tar.xz")
+sha256sums=('http://ftp.de.debian.org/debian/pool/main/c/console-setup/')
 
 package() {
   cd console-setup
