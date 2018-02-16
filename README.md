@@ -13,6 +13,7 @@ PKGBUILDs for extra repository
 | manjaro-backgrounds | ![](http://mirror.strits.dk:8090/view/Manjaro%20ARM%20Extra/job/manjaro-backgrounds/badge/icon) |
 | manjaro-icons | ![](http://mirror.strits.dk:8090/view/Manjaro%20ARM%20Extra/job/manjaro-icons/badge/icon) |
 | manjaro-settings-manager | ![](http://mirror.strits.dk:8090/view/Manjaro%20ARM%20Extra/job/manjaro-settings-manager/badge/icon) |
+| mate-tweak | ![](http://mirror.strits.dk:8090/view/Manjaro%20ARM%20Extra/job/mate-tweak/badge/icon) |
 | octopi | ![](http://mirror.strits.dk:8090/view/Manjaro%20ARM%20Extra/job/octopi/badge/icon) |
 | package-query | ![](http://mirror.strits.dk:8090/view/Manjaro%20ARM%20Extra/job/package-query/badge/icon) |
 | pamac | ![](http://mirror.strits.dk:8090/view/Manjaro%20ARM%20Extra/job/pamac/badge/icon) |
