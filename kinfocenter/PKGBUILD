@@ -4,8 +4,8 @@
 # Contributor: Antonio Rojas
 
 pkgname=kinfocenter
-pkgver=5.9.1
-pkgrel=2
+pkgver=5.12.2
+pkgrel=1
 pkgdesc='A utility that provides information about a computer system'
 arch=('armv6h' 'armv7h' 'aarch64' 'i686' 'x86_64')
 url='https://www.kde.org/applications/system/kinfocenter/'
@@ -17,7 +17,7 @@ groups=('plasma')
 source=("http://download.kde.org/stable/plasma/${pkgver}/$pkgname-$pkgver.tar.xz"
         'manjaro-logo.svg'
         'kcm-about-distrorc')
-sha256sums=('a10598a09a7f81acf4f613a6b16be2e1cbd1946885ea9444ac1011180488649c'
+sha256sums=('114b66b938c53aacffe88eacc8105c044861697d7f52bafb0fdb92d4c5f14f69'
             '7d2c58b078fd87094a0a65d86b303841b2462ca578d5bc7e2bb64fb5c4003eae'
             '028ce1e24cdcdbae117c46aed839e1a6e5fc03679fc4dd7742a44020e4f604fe')
 #validpgpkeys=('2D1D5B0588357787DE9EE225EC94D18F7F05997E'  # Jonathan Riddell
@@ -45,4 +45,3 @@ package() {
   install -Dm644 "$srcdir"/manjaro-logo.svg "$pkgdir"/usr/share/about-distro/manjaro-logo.svg
   install -Dm644 "$srcdir"/kcm-about-distrorc "$pkgdir"/etc/xdg/kcm-about-distrorc
 }
- 
