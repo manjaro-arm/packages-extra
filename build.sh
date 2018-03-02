@@ -18,12 +18,13 @@ fi
 
 ######## Some globals to set ########
 #Only set this one
-_BUILDDIR=/home/strit/build-dir
+_BUILDDIR=/opt/build-dir
 
 #Leave these alone
 _ROOTFS=$_BUILDDIR/$_ARCH
 _REPODIR=$_BUILDDIR/repo
-_PKGDIR=$_BUILDDIR/packages
+#_PKGDIR=$_BUILDDIR/packages
+_PKGDIR=/opt/repo/mirror/stable/
 
 
 
