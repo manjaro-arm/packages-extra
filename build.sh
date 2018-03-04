@@ -11,7 +11,7 @@
 
 #Build the 'any' packages on armv7
 if [ $3 == "any" ]; then
-	_ARCH="armv7"
+	_ARCH="armv7h"
 else
 	_ARCH="$3"
 fi
