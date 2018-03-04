@@ -24,7 +24,7 @@ _BUILDDIR=/opt/build-dir
 _ROOTFS=$_BUILDDIR/$_ARCH
 _REPODIR=$_BUILDDIR/repo
 #_PKGDIR=$_BUILDDIR/packages
-_PKGDIR=/opt/repo/mirror/stable/
+_PKGDIR=/opt/repo/mirror/stable
 
 
 
