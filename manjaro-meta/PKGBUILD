@@ -34,7 +34,7 @@ package_manjaro-alsa() {
 package_manjaro-pulse() {
 	pkgdesc="Manjaro Pulseaudio support (Meta-PKG)"
 	if [ "$CARCH" = "i686" ]; then
-		depends=("pulseaudio" 
+		depends=("pulseaudio"
 			"pulseaudio-alsa")
 	elif [ "$CARCH" = "x86_64" ]; then
 		depends=("pulseaudio"

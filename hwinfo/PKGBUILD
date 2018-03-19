@@ -5,9 +5,9 @@
 # Contributor: champus, madeye, ranguvar and ninja_pt
 
 pkgname=hwinfo
-pkgver=21.51_1.1
+pkgver=21.52_1.1
 _fn="$pkgname-${pkgver/_/-}.src.rpm"
-pkgrel=2
+pkgrel=1
 pkgdesc='Hardware detection tool from openSUSE'
 arch=('x86_64' 'i686' 'armv6h' 'armv7h' 'aarch64')
 url='http://download.opensuse.org/source/tumbleweed/repo/oss/suse/src/'
@@ -17,7 +17,7 @@ makedepends=('sysfsutils' 'rpmextract' 'flex' 'git')
 options=('!emptydirs')
 source=("http://download.opensuse.org/source/tumbleweed/repo/oss/suse/src/$_fn"
         'custom_ioctl.patch')
-sha256sums=('9e6658a80b34e023963d77355f51e352c4f4b0f30617c0f673acdbc28fbd9fff'
+sha256sums=('1e7eaef2a927683d6156d4a84fa0541a4e23008cc401d319fd298aaddbaa7aa0'
             '621f4172854260a8b87967d718f8f03282fe02a99e7dca69af4d7245033066f3')
 
 prepare() {
