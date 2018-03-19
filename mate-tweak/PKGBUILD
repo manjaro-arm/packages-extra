@@ -27,13 +27,13 @@ source=("$pkgname-$pkgver.tar.gz::https://github.com/ubuntu-mate/$pkgname/archiv
         )
 sha256sums=('76c924045593f56e298cff79f2d0d3d9219eec198814fab6ec2f2335ca3a77c7')
 
-prepare() {
+#prepare() {
     #  cd "$pkgname-$pkgver"
     #  sed -i 's|/usr/lib/mate-applets/topmenu-mate-panel-applet|/usr/lib/topmenu-gtk/topmenu-mate-panel-applet|' mate-tweak
 
-    cd $srcdir
-    mv $pkgname-$_commit $pkgname-$pkgver
-}
+#    cd $srcdir
+#    mv $pkgname-$_commit $pkgname-$pkgver
+#}
 
 package() {
     cd "$pkgname-$pkgver"
