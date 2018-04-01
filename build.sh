@@ -54,7 +54,7 @@ sudo systemd-nspawn -D $_ROOTFS/ -u manjaro --chdir=/home/manjaro/build/ makepkg
 if ls $_ROOTFS/home/manjaro/build/*.pkg.tar.xz* 1> /dev/null 2>&1; then
     #pull package out of rootfs
     msg "!!!!! +++++ ===== Package Succeeded ===== +++++ !!!!!"
-    msg "===== Extracting finish/home/jenkins/build/ed package out of rootfs ====="
+    msg "===== Extracting finished package out of rootfs ====="
     cp $_ROOTFS/home/manjaro/build/*.pkg.tar.xz* $_PKGDIR/$3/$1/
 
     #clean up rootfs
