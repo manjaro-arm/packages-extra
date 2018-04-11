@@ -14,4 +14,5 @@ PKGBUILDs for extra repository
 | octopi | ![](http://159.65.88.73:8080/view/Extra/job/octopi/badge/icon) |
 | package-query | ![](http://159.65.88.73:8080/view/Extra/job/package-query/badge/icon) |
 | pamac | ![](http://159.65.88.73:8080/view/Extra/job/pamac/badge/icon) |
+| trizen | ![](http://159.65.88.73:8080/view/Extra/job/trizen/badge/icon) |
 | yaourt | ![](http://159.65.88.73:8080/view/Extra/job/yaourt/badge/icon) |
