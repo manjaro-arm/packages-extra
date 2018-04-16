@@ -1,0 +1,27 @@
+
+pkgbase=manjaro-arm-backgrounds
+pkgname=('manjaro-arm-wallpapers' 'manjaro-arm-mate-wallpapers')
+pkgver=20180416
+pkgrel=1
+arch=('any')
+url="https://github.com/oberon2007/$pkgname"
+_commit=fd3372bcd68e69392c5459a1f3ce26e00af64b8e
+_commit_mate=028d9064523b42216fa150e6b326fbfe269b270a
+source=("$pkgname-$_commit.tar.gz::https://github.com/manjaro-arm/manjaro-arm-wallpapers/archive/$_commit.tar.gz"
+        "$pkgname-$_commit_mate.tar.gz::https://github.com/manjaro-arm/manjaro-arm-mate-wallpapers/archive/$_commit_mate.tar.gz")
+sha256sums=('ed2912782e7faca927d48378de2df9b950ed780464af99329644ab8c5a201199'
+            '95ead90c28ab9c3bc3cf6076768674990a7b96d1ba650e722a2af5df77d66e3b')
+
+package_manjaro-arm-wallpapers() {
+    pkgdesc="Manjaro-ARM Wallpapers"
+    cd $srcdir/$pkgname-$_commit
+    install -dm755 $pkgdir/usr/share
+    cp -r * $pkgdir/usr/share
+}
+
+package_manjaro-arm-mate-wallpapers() {
+    pkgdesc="Manjaro-ARM MATE Wallpapers"
+    cd $srcdir/$pkgname-$_commit_mate
+    install -dm755 $pkgdir/usr/share
+    cp -r * $pkgdir/usr/share
+}
