@@ -15,13 +15,13 @@ sha256sums=('ed2912782e7faca927d48378de2df9b950ed780464af99329644ab8c5a201199'
 package_manjaro-arm-wallpapers() {
     pkgdesc="Manjaro-ARM Wallpapers"
     cd $srcdir/$pkgname-$_commit
-    install -dm755 $pkgdir/usr/share
-    cp -r * $pkgdir/usr/share
+    install -dm755 $pkgdir/usr/share/wallpapers/manjaro-arm/generic
+    cp -r * $pkgdir/usr/share/wallpapers/manjaro-arm/generic
 }
 
 package_manjaro-arm-mate-wallpapers() {
     pkgdesc="Manjaro-ARM MATE Wallpapers"
     cd $srcdir/$pkgname-$_commit_mate
-    install -dm755 $pkgdir/usr/share
-    cp -r * $pkgdir/usr/share
+    install -dm755 $pkgdir/usr/share/wallpapers/manjaro-arm/mate
+    cp -r * $pkgdir/usr/share/wallpapers/manjaro-arm/mate
 }
