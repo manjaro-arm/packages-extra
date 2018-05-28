@@ -1,7 +1,7 @@
 pkgname=alpm-octopi-utils
 _pkgname=alpm_octopi_utils
 pkgver=1.0.0
-pkgrel=1
+pkgrel=2
 _commit=7f3a6c7e0e46bf9acb54af472f4fe45ab632d58c
 pkgdesc="Alpm utils for Octopi"
 url="https://octopiproject.wordpress.com/"
