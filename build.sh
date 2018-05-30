@@ -43,7 +43,8 @@ sudo systemd-nspawn -D $_ROOTFS/ -u manjaro sudo pacman -Syyu --noconfirm
 
 #cp package to rootfs
 msg "===== Copying build directory {$1/$2} to rootfs ====="
-sudo cp -rp /var/lib/jenkins/workspace/$2/$2/ $_ROOTFS/home/manjaro/build/
+sudo systemd-nspawn -D $_ROOTFS/ -u manjaro --chdir=/home/manjaro/ mkdir build
+sudo cp -rp /var/lib/jenkins/workspace/$2/$2/* $_ROOTFS/home/manjaro/build/
 
 #build package
 msg "===== Building {$2} ====="
