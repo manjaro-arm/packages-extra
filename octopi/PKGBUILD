@@ -28,7 +28,7 @@ else
 fi
   source+=('qt511.patch')
 sha256sums=('13400ad5235331c7add1b0fa10a164b9b12a92c23e13dddea976935a9a259c92'
-            '2d36c7ccc0235361bf105903281d05fe883559b6b34e550620faf9466aad9877')
+            '093398aabcb9eb76cd3f8036c09a772b8a210b2b370a9ef6f45e6efce60f53ae')
 
 
 prepare() {
