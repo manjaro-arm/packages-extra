@@ -13,9 +13,9 @@ pkgbase=octopi
 pkgname=('octopi' 'octopi-repoeditor' 'octopi-pacmanhelper' 'octopi-cachecleaner'
          'octopi-notifier-qt5' 'octopi-notifier-frameworks')
 pkgver=0.8.12
-pkgrel=1
+pkgrel=2
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
-_gitcommit="27de3460cbf1879e7ecc8dfbc1f722e7b018b7d3"
+_gitcommit="c413caadd11883ffcebf13ce515fb17bc23ebd27"
 arch=('i686' 'x86_64' 'armv7h' 'aarch64')
 url="http://octopiproject.wordpress.com"
 license=('GPL2')
@@ -26,8 +26,9 @@ if [ "${_gitcommit}" != "" ]; then
 else
   source=("octopi-${pkgver}.tar.gz::https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz")
 fi
-
-sha256sums=('d401953c2a62e5e1e26d20e6a4c802dc97cab13fa330053337561b6fc8cb5044')
+  source+=('qt511.patch')
+sha256sums=('13400ad5235331c7add1b0fa10a164b9b12a92c23e13dddea976935a9a259c92'
+            '2d36c7ccc0235361bf105903281d05fe883559b6b34e550620faf9466aad9877')
 
 
 prepare() {
@@ -43,6 +44,8 @@ prepare() {
   cp -r notifier notifier-qt5
   cp -r notifier notifier-frameworks
   sed -i 's|#KSTATUS|KSTATUS|' notifier-frameworks/octopi-notifier/octopi-notifier.pro
+
+  patch -p1 -i $srcdir/qt511.patch
 }
 
 build() {
@@ -93,8 +96,8 @@ package_octopi() {
               'lxqt-sudo: for LXQT'
               'gnome-keyring: for password management'
               'gist: for SysInfo report'
-              'trizen: for AUR support'
               'pacaur: for AUR support'
+              'trizen: for AUR support'
               'yaourt: for AUR support'
               'octopi-repoeditor: for editing functions'
               'octopi-cachecleaner: for cleaning functions'
