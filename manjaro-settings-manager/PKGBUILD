@@ -4,24 +4,33 @@ pkgbase=manjaro-settings-manager
 pkgname=('manjaro-settings-manager' 'manjaro-settings-manager-kcm' 
          'manjaro-settings-manager-notifier' 'manjaro-settings-manager-knotifier')
 pkgver=0.5.4
-pkgrel=9
-_git=2d99e067f8ef836918dfd53766072ecc0157a594
+pkgrel=14
+_git=0.5.4
 pkgdesc="Manjaro Linux System Settings Tool"
 arch=('i686' 'x86_64' 'armv7h' 'aarch64')
 url="https://github.com/manjaro/manjaro-settings-manager"
 license=("GPL")
-depends=('icu' 'qt5-base>=5.9.1' 'hwinfo' 'kitemmodels' 'kauth' 
+depends=('icu>=61.1' 'qt5-base>=5.9.1' 'hwinfo' 'kitemmodels' 'kauth' 
          'kcoreaddons' 'ckbcomp' 'xdg-utils')
 optdepends=('manjaro-settings-manager-notifier: qt-based'
             'manjaro-settings-manager-knotifier: knotifications-based')
 makedepends=('extra-cmake-modules' 'kdoctools' 'qt5-tools' 'knotifications' 
              'kconfigwidgets' 'kcmutils')
 conflicts=('kcm-msm')
-source=("msm-$pkgver-$pkgrel.tar.gz::$url/archive/$_git.tar.gz")
-sha256sums=('95bac39c107678ca8827d7e2d2199f309688d8739326bf3aa7c48e0df39f4406')
+source=("msm-$pkgver-$pkgrel.tar.gz::$url/archive/$_git.tar.gz"
+        'icu61.patch::https://github.com/manjaro/manjaro-settings-manager/commit/b49453649ba5e8bf39ed4361807f6be9e1dac3cd.patch'
+        '140.patch::https://github.com/manjaro/manjaro-settings-manager/commit/b329c132e1043e0462e0ccb39cc0eecc186d2cfb.patch'
+        'pacman51.patch::https://github.com/manjaro/manjaro-settings-manager/commit/d60f1db3f9a2fbadf8c330ae072a4f2b69e3d253.patch')
+sha256sums=('d14463432cab5aef99806aa694407836ce6813a4f9c563ad72c66eecda61cebc'
+            '34eb623dc4ce43756390f1daca0315a647c10228cc321ab4a51eb347696f5f50'
+            'd8da33e431e5652ffc523ec0f4f7d1b56dc4205608b29fc5573cc63714ac98a9'
+            '9db374416aaf46866e9ce6148bd24be8c7b5bc9033056e8fc03b0d06204acf1e')
 
 prepare() {
   cd "$srcdir/${pkgbase}-${_git}"
+  patch -p1 -i "$srcdir/icu61.patch"
+  patch -p1 -i "$srcdir/140.patch"
+  patch -p1 -i "$srcdir/pacman51.patch"
 }
 
 build() {
@@ -34,7 +43,7 @@ build() {
     -DLIB_INSTALL_DIR=lib \
     -DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
     -DSYSCONF_INSTALL_DIR=/etc
-  make
+  CXXFLAGS+="-std=gnu++98" make
 }
 
 package_manjaro-settings-manager() {
