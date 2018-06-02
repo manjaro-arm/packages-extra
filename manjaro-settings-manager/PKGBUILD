@@ -43,7 +43,7 @@ build() {
     -DLIB_INSTALL_DIR=lib \
     -DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
     -DSYSCONF_INSTALL_DIR=/etc
-  CXXFLAGS+="-std=gnu++98" make
+  make
 }
 
 package_manjaro-settings-manager() {
